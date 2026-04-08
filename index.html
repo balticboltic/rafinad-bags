@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>РАФИНАД by Olga — Сумки ручной работы из рафии</title>
+  <meta name="description" content="Авторские сумки ручной работы из премиальной рафии Ispie. Каждая сумка уникальна. Мастер с 50-летним опытом.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #D4B896;
+      --sand-light: #E8DCC8;
+      --sand-dark: #B89B75;
+      --terracotta: #C4704B;
+      --terracotta-light: #D4896A;
+      --cream: #FAF6F1;
+      --charcoal: #2D2D2D;
+      --sage: #8B9A7D;
+      --gold: #B8956B;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--terracotta); font-weight: 500; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(250,246,241,0.93); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,184,150,0.3);
+      transition: box-shadow 0.3s;
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 6px; color: var(--charcoal); text-decoration: none; }
+    .nav-logo span { font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-left: 8px; vertical-align: middle; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--charcoal); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta { background: var(--terracotta) !important; color: white !important; opacity: 1 !important; padding: 10px 20px; border-radius: 2px; }
+    .nav-cta:hover { background: var(--terracotta-light) !important; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 64px 80px 80px; }
+    .hero-tag { font-size: 10px; letter-spacing: 5px; color: var(--terracotta); text-transform: uppercase; margin-bottom: 32px; animation: fadeUp 0.8s ease both; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px,6vw,80px); font-weight: 300; letter-spacing: 10px; line-height: 1.05; margin-bottom: 12px; animation: fadeUp 0.8s 0.1s ease both; }
+    .hero-by { font-size: 14px; letter-spacing: 4px; color: var(--gold); margin-bottom: 40px; animation: fadeUp 0.8s 0.2s ease both; }
+    .hero-desc { font-size: 14px; font-weight: 300; line-height: 1.9; opacity: 0.8; max-width: 380px; margin-bottom: 48px; animation: fadeUp 0.8s 0.3s ease both; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s 0.4s ease both; }
+    .btn-primary { display: inline-block; background: var(--charcoal); color: white; padding: 16px 36px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: background 0.25s, transform 0.2s; }
+    .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); }
+    .btn-secondary { display: inline-block; border: 1px solid var(--sand-dark); color: var(--charcoal); padding: 16px 36px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.25s; }
+    .btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); transform: translateY(-2px); }
+    .hero-right { position: relative; overflow: hidden; background: var(--sand-light); }
+    .hero-placeholder { width: 100%; height: 100%; min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand) 100%); gap: 16px; }
+    .hero-placeholder .icon { font-family: 'Cormorant Garamond', serif; font-size: 120px; color: rgba(255,255,255,0.4); line-height: 1; }
+    .hero-placeholder p { font-size: 11px; letter-spacing: 3px; color: rgba(45,45,45,0.35); text-transform: uppercase; }
+    .hero-badge { position: absolute; bottom: 40px; right: 40px; background: rgba(45,45,45,0.88); backdrop-filter: blur(8px); color: white; padding: 20px 24px; border-radius: 4px; text-align: center; animation: fadeUp 0.8s 0.5s ease both; }
+    .hero-badge-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--sand); line-height: 1; }
+    .hero-badge-text { font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+
+    /* STRIP */
+    .strip { background: var(--charcoal); padding: 22px 80px; display: flex; justify-content: center; gap: 64px; align-items: center; flex-wrap: wrap; }
+    .strip-item { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.55); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
+    .strip-item .big { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--sand); }
+
+    /* ABOUT */
+    .about { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .about-image-wrap { position: relative; }
+    .about-frame { width: 100%; aspect-ratio: 3/4; background: linear-gradient(160deg, var(--sand-light), var(--sand)); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
+    .about-frame .big-letter { font-family: 'Cormorant Garamond', serif; font-size: 160px; color: rgba(255,255,255,0.28); line-height: 1; }
+    .about-frame p { font-size: 10px; letter-spacing: 3px; color: rgba(45,45,45,0.28); text-transform: uppercase; }
+    .about-accent { position: absolute; bottom: -24px; right: -24px; background: var(--terracotta); color: white; padding: 28px 32px; border-radius: 4px; }
+    .about-accent-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: 1; }
+    .about-accent-text { font-size: 9px; letter-spacing: 2px; opacity: 0.75; margin-top: 4px; }
+    .about-content .tag { margin-bottom: 16px; }
+    .about-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.5vw,52px); font-weight: 300; line-height: 1.2; letter-spacing: 2px; margin-bottom: 32px; }
+    .about-content p { font-size: 14px; font-weight: 300; line-height: 1.9; opacity: 0.8; margin-bottom: 20px; }
+    .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+    .value-item { background: var(--sand-light); padding: 20px; border-radius: 4px; }
+    .value-item h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 6px; }
+    .value-item p { font-size: 12px; opacity: 0.7; margin: 0; line-height: 1.6; }
+
+    /* GALLERY */
+    .gallery { padding: 80px; background: white; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header .tag { margin-bottom: 12px; }
+    .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,48px); font-weight: 300; letter-spacing: 3px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 4px; }
+    .gallery-item:nth-child(2) { grid-row: span 2; }
+    .gallery-frame { width: 100%; aspect-ratio: 1; background: var(--sand-light); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; transition: transform 0.5s ease; }
+    .gallery-item:nth-child(2) .gallery-frame { aspect-ratio: auto; height: 100%; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .gallery-item:hover .gallery-frame { transform: scale(1.03); }
+    .gallery-ph { font-family: 'Cormorant Garamond', serif; font-size: 56px; color: rgba(212,184,150,0.5); }
+    .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(45,45,45,0.85)); padding: 32px 20px 20px; transform: translateY(100%); transition: transform 0.4s ease; }
+    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
+    .gallery-overlay h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: white; letter-spacing: 1px; }
+    .gallery-overlay p { font-size: 11px; color: var(--sand); margin-top: 4px; }
+    .gallery-note { text-align: center; margin-top: 48px; font-size: 13px; opacity: 0.6; font-weight: 300; }
+    .gallery-note strong { color: var(--terracotta); font-weight: 500; }
+
+    /* PROCESS */
+    .process { padding: 120px 80px; max-width: 1400px; margin: 0 auto; }
+    .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 60px; }
+    .process-item { padding: 40px; border-top: 2px solid var(--sand-light); transition: border-color 0.3s; }
+    .process-item:hover { border-color: var(--terracotta); }
+    .process-num { font-family: 'Cormorant Garamond', serif; font-size: 64px; color: var(--sand-light); line-height: 1; margin-bottom: 20px; }
+    .process-item h3 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .process-item p { font-size: 13px; font-weight: 300; line-height: 1.8; opacity: 0.7; }
+
+    /* MATERIALS */
+    .materials { background: var(--charcoal); padding: 120px 80px; color: white; }
+    .materials-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .materials .tag { color: var(--sand); margin-bottom: 16px; }
+    .materials h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3vw,52px); font-weight: 300; letter-spacing: 2px; line-height: 1.2; margin-bottom: 32px; }
+    .materials p { font-size: 14px; font-weight: 300; line-height: 1.9; opacity: 0.7; margin-bottom: 16px; }
+    .facts { display: flex; flex-direction: column; gap: 24px; }
+    .fact { display: flex; align-items: flex-start; gap: 20px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .fact:last-child { border-bottom: none; }
+    .fact-icon { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--sand); flex-shrink: 0; width: 36px; text-align: center; }
+    .fact h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--sand); margin-bottom: 4px; }
+    .fact p { font-size: 13px; opacity: 0.55; margin: 0; }
+
+    /* QUOTE */
+    .quote-section { padding: 100px 80px; text-align: center; background: var(--sand-light); }
+    .quote-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px,2.5vw,38px); font-weight: 300; font-style: italic; line-height: 1.55; max-width: 800px; margin: 0 auto 32px; }
+    .quote-author { font-size: 11px; letter-spacing: 3px; color: var(--terracotta); text-transform: uppercase; }
+
+    /* BUY */
+    .buy { padding: 120px 80px; text-align: center; }
+    .buy .tag { margin-bottom: 16px; }
+    .buy h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.5vw,56px); font-weight: 300; letter-spacing: 3px; margin-bottom: 16px; }
+    .buy > p { font-size: 14px; font-weight: 300; opacity: 0.7; margin-bottom: 56px; line-height: 1.8; }
+    .buy-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; margin: 0 auto 40px; }
+    .buy-card { background: white; padding: 48px 40px; border-radius: 4px; border: 1px solid var(--sand-light); text-decoration: none; color: var(--charcoal); display: block; transition: box-shadow 0.3s, transform 0.3s; }
+    .buy-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.08); transform: translateY(-4px); }
+    .buy-card-tag { display: inline-block; background: var(--sand-light); color: var(--terracotta); font-size: 9px; letter-spacing: 2px; padding: 4px 10px; border-radius: 2px; margin-bottom: 16px; text-transform: uppercase; }
+    .buy-card-icon { font-size: 40px; margin-bottom: 16px; }
+    .buy-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; letter-spacing: 2px; margin-bottom: 8px; }
+    .buy-card p { font-size: 12px; opacity: 0.6; margin: 0; line-height: 1.6; }
+    .buy-contact { font-size: 13px; font-weight: 300; opacity: 0.6; }
+    .buy-contact a { color: var(--terracotta); text-decoration: none; }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); padding: 60px 80px 40px; color: white; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; gap: 40px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; letter-spacing: 6px; }
+    .footer-logo span { font-size: 11px; letter-spacing: 2px; color: var(--gold); display: block; margin-top: 4px; }
+    .footer-tagline { font-size: 12px; opacity: 0.35; margin-top: 12px; font-weight: 300; max-width: 240px; line-height: 1.6; }
+    .footer-links h4 { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--sand); margin-bottom: 16px; }
+    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; font-weight: 300; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--sand); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; flex-wrap: wrap; gap: 16px; }
+    .footer-copy { font-size: 11px; opacity: 0.3; font-weight: 300; }
+    .footer-social { display: flex; gap: 20px; }
+    .footer-social a { font-size: 11px; letter-spacing: 2px; color: var(--sand); text-decoration: none; opacity: 0.55; transition: opacity 0.2s; }
+    .footer-social a:hover { opacity: 1; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 24px; }
+      .hero-right { height: 70vw; }
+      .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 48px; }
+      .about-accent { bottom: -16px; right: -16px; }
+      .gallery { padding: 60px 24px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(2) { grid-row: span 1; }
+      .process { padding: 60px 24px; }
+      .process-grid { grid-template-columns: 1fr; gap: 0; }
+      .process-item { padding: 24px 0; }
+      .materials { padding: 60px 24px; }
+      .materials-inner { grid-template-columns: 1fr; gap: 48px; }
+      .quote-section { padding: 60px 24px; }
+      .buy { padding: 60px 24px; }
+      .buy-cards { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px; }
+      .strip { padding: 20px 24px; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo serif">РАФИНАД <span>by Olga</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">О мастере</a></li>
+    <li><a href="#gallery">Коллекция</a></li>
+    <li><a href="#materials">Материалы</a></li>
+    <li><a href="#buy" class="nav-cta">Купить</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Сумки ручной работы · Рафия Ispie</div>
+    <h1 class="hero-title serif">РАФИНАД</h1>
+    <div class="hero-by">by Olga</div>
+    <p class="hero-desc">
+      Авторские сумки из премиальной рафии — каждая создаётся в единственном экземпляре. 
+      Не по схемам, не на потоке. Только ручная работа и 50 лет мастерства.
+    </p>
+    <div class="hero-actions">
+      <a href="#gallery" class="btn-primary">Смотреть коллекцию</a>
+      <a href="#buy" class="btn-secondary">Где купить</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- ЗАМЕНИТЕ на: <img src="hero.jpg" alt="Сумка РАФИНАД" style="width:100%;height:100%;object-fit:cover"> -->
+    <div class="hero-placeholder">
+      <div class="icon serif">✿</div>
+      <p>Ваше лучшее фото сумки</p>
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-num serif">4–8</div>
+      <div class="hero-badge-text">сумок в месяц</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><span class="big serif">50</span><span>Лет опыта вязания</span></div>
+  <div class="strip-item"><span class="big serif">100%</span><span>Авторские модели</span></div>
+  <div class="strip-item"><span class="big serif">Ispie</span><span>Премиальная рафия</span></div>
+  <div class="strip-item"><span class="big serif">1/1</span><span>Каждая уникальна</span></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image-wrap reveal">
+    <div class="about-frame">
+      <!-- ЗАМЕНИТЕ на: <img src="olga.jpg" alt="Мастер Ольга"> -->
+      <div class="big-letter serif">О</div>
+      <p>Фото мастера</p>
+    </div>
+    <div class="about-accent">
+      <div class="about-accent-num serif">50</div>
+      <div class="about-accent-text">Лет опыта</div>
+    </div>
+  </div>
+
+  <div class="about-content reveal">
+    <div class="tag">01 / О мастере</div>
+    <h2 class="serif">Ольга Козлова —<br>врач и мастер</h2>
+    <p>
+      Ольга вяжет с пятого класса — это почти пятьдесят лет практики, 
+      интуиции и любви к ремеслу. В основной жизни она врач и руководитель 
+      поликлиники: та же медицинская точность и внимание к каждой детали 
+      живёт в каждой петле её сумок.
+    </p>
+    <p>
+      Все модели — авторские, придуманные самой Ольгой. Никаких готовых схем, 
+      никаких повторов. Каждая сумка — это несколько вечеров, чашка чая 
+      и часть её истории.
+    </p>
+    <div class="about-values">
+      <div class="value-item">
+        <h4>Натуральность</h4>
+        <p>Только рафия Ispie — экологичный материал растительного происхождения</p>
+      </div>
+      <div class="value-item">
+        <h4>Мастерство</h4>
+        <p>Полвека опыта в каждой петле — это невозможно подделать</p>
+      </div>
+      <div class="value-item">
+        <h4>Уникальность</h4>
+        <p>Ни одна сумка не повторяется — каждая единственная в своём роде</p>
+      </div>
+      <div class="value-item">
+        <h4>Душевность</h4>
+        <p>Хобби, ставшее делом. В каждой сумке — часть истории мастера</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-header reveal">
+    <div class="tag">02 / Коллекция</div>
+    <h2 class="serif">Работы мастера</h2>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <div class="gallery-frame"><!-- <img src="s1.jpg" alt=""> --><span class="gallery-ph serif">✿</span></div>
+      <div class="gallery-overlay"><h3 class="serif">Шоппер «Песчаный берег»</h3><p>Рафия Ispie · Ручная работа</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-frame" style="min-height:500px"><!-- <img src="s2.jpg" alt=""> --><span class="gallery-ph serif">◈</span></div>
+      <div class="gallery-overlay"><h3 class="serif">Корзина «Летнее утро»</h3><p>Рафия Ispie · Авторская модель</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-frame"><!-- <img src="s3.jpg" alt=""> --><span class="gallery-ph serif">✦</span></div>
+      <div class="gallery-overlay"><h3 class="serif">Клатч «Морской бриз»</h3><p>Рафия Ispie · Единственный экземпляр</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-frame"><!-- <img src="s4.jpg" alt=""> --><span class="gallery-ph serif">❀</span></div>
+      <div class="gallery-overlay"><h3 class="serif">Сумка «Терракота»</h3><p>Рафия Ispie · Ручная работа</p></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-frame"><!-- <img src="s5.jpg" alt=""> --><span class="gallery-ph serif">✿</span></div>
+      <div class="gallery-overlay"><h3 class="serif">Тоут «Рассвет»</h3><p>Рафия Ispie · Авторская модель</p></div>
+    </div>
+  </div>
+  <p class="gallery-note reveal">
+    Актуальные работы и наличие — на <strong>Ярмарке Мастеров</strong>.<br>
+    Ограниченный тираж: 4–8 сумок в месяц.
+  </p>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-header reveal">
+    <div class="tag">03 / Как это делается</div>
+    <h2 class="serif">Три принципа каждой сумки</h2>
+  </div>
+  <div class="process-grid">
+    <div class="process-item reveal">
+      <div class="process-num serif">01</div>
+      <h3>Только рафия Ispie</h3>
+      <p>Премиальное натуральное волокно растительного происхождения. Никакой синтетики, никаких компромиссов.</p>
+    </div>
+    <div class="process-item reveal">
+      <div class="process-num serif">02</div>
+      <h3>Авторские модели</h3>
+      <p>Все модели придумывает сама Ольга — не по готовым схемам. Поэтому ни одна сумка не похожа на другую.</p>
+    </div>
+    <div class="process-item reveal">
+      <div class="process-num serif">03</div>
+      <h3>Ограниченный тираж</h3>
+      <p>4–8 сумок в месяц — это не ограничение, это честность. Ручная работа требует времени и полного внимания.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="materials" id="materials">
+  <div class="materials-inner">
+    <div class="reveal">
+      <div class="tag">04 / Материал</div>
+      <h2 class="serif">Рафия Ispie —<br>лучшее из природы</h2>
+      <p>Рафия — натуральное растительное волокно из листьев пальмы. Лёгкое, прочное, дышащее. Идеально для лета.</p>
+      <p>Ispie — один из лучших производителей рафии в мире. Именно этот материал выбирает Ольга, потому что он того стоит.</p>
+    </div>
+    <div class="facts reveal">
+      <div class="fact">
+        <div class="fact-icon serif">◈</div>
+        <div>
+          <h4>100% натуральный</h4>
+          <p>Растительное происхождение, экологичное производство</p>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon serif">✿</div>
+        <div>
+          <h4>Долговечный</h4>
+          <p>Правильно сплетённая рафия служит годами</p>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon serif">✦</div>
+        <div>
+          <h4>Уникальная текстура</h4>
+          <p>Каждая нить немного отличается — это красота натурального материала</p>
+        </div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon serif">❀</div>
+        <div>
+          <h4>Лёгкий и прочный</h4>
+          <p>Летняя сумка не должна быть тяжёлой — рафия с этим справляется</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="reveal">
+    <p class="quote-text serif">
+      «Эта сумка создавалась три вечера — под любимый сериал и чашку чая. 
+      Представляю, как вы идёте с ней по набережной утром...»
+    </p>
+    <div class="quote-author">— Ольга, мастер и основатель</div>
+  </div>
+</section>
+
+<!-- BUY -->
+<section class="buy" id="buy">
+  <div class="reveal">
+    <div class="tag">05 / Где купить</div>
+    <h2 class="serif">Найти сумку</h2>
+    <p>
+      Актуальные работы и цены — на Ярмарке Мастеров и Авито.<br>
+      Есть вопросы? Напишите напрямую.
+    </p>
+  </div>
+  <div class="buy-cards reveal">
+    <a href="https://www.livemaster.ru" target="_blank" class="buy-card">
+      <!-- Замените href на вашу реальную ссылку магазина -->
+      <div class="buy-card-tag">Основная витрина</div>
+      <div class="buy-card-icon">🧺</div>
+      <h3 class="serif">Ярмарка Мастеров</h3>
+      <p>Полный каталог работ, описания, цены и возможность заказа</p>
+    </a>
+    <a href="https://www.avito.ru" target="_blank" class="buy-card">
+      <!-- Замените href на вашу реальную ссылку объявлений -->
+      <div class="buy-card-tag">Дополнительный канал</div>
+      <div class="buy-card-icon">🏷️</div>
+      <h3 class="serif">Авито</h3>
+      <p>Объявления с текущими работами и актуальными ценами</p>
+    </a>
+  </div>
+  <p class="buy-contact">
+    Вопросы и индивидуальные запросы: 
+    <a href="https://t.me/rafinad_bags">написать в Telegram</a>
+    <!-- Замените ссылку на реальный аккаунт -->
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo serif">РАФИНАД <span>by Olga</span></div>
+        <p class="footer-tagline">Авторские сумки ручной работы из премиальной рафии Ispie</p>
+      </div>
+      <div class="footer-links">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="#about">О мастере</a></li>
+          <li><a href="#gallery">Коллекция</a></li>
+          <li><a href="#materials">Материалы</a></li>
+          <li><a href="#buy">Купить</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="https://t.me/rafinad_bags">Telegram</a></li>
+          <li><a href="https://www.livemaster.ru">Ярмарка Мастеров</a></li>
+          <li><a href="https://www.avito.ru">Авито</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 РАФИНАД by Olga. Сумки ручной работы из рафии.</div>
+      <div class="footer-social">
+        <a href="#">Telegram</a>
+        <a href="#">ВКонтакте</a>
+        <a href="#">Ярмарка Мастеров</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
+  });
+</script>
+</body>
+</html>
