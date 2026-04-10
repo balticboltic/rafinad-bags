@@ -25,124 +25,44 @@
     .serif { font-family: 'Cormorant Garamond', serif; }
     .tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--terracotta); font-weight: 500; }
 
-    /* === TEXTURE PATTERNS === */
-
-    /* Разделитель-полоса с текстурой плетения */
-    .weave-divider {
-      height: 64px;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
+    /* TEXTURES */
+    .weave-divider { height: 64px; width: 100%; position: relative; overflow: hidden; }
     .weave-divider::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 8px,
-          rgba(180,155,117,0.18) 8px,
-          rgba(180,155,117,0.18) 9px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 8px,
-          rgba(180,155,117,0.18) 8px,
-          rgba(180,155,117,0.18) 9px
-        ),
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 12px,
-          rgba(180,155,117,0.07) 12px,
-          rgba(180,155,117,0.07) 13px
-        );
+        repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(180,155,117,0.18) 8px, rgba(180,155,117,0.18) 9px),
+        repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(180,155,117,0.18) 8px, rgba(180,155,117,0.18) 9px),
+        repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(180,155,117,0.07) 12px, rgba(180,155,117,0.07) 13px);
       background-color: var(--cream);
     }
-
-
-    /* Фоновая текстура для секции цитаты */
-    .quote-section {
-      position: relative;
-    }
+    .quote-section { position: relative; }
     .quote-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 14px,
-          rgba(196,112,75,0.04) 14px,
-          rgba(196,112,75,0.04) 15px
-        ),
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 14px,
-          rgba(196,112,75,0.04) 14px,
-          rgba(196,112,75,0.04) 15px
-        );
+        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(196,112,75,0.04) 14px, rgba(196,112,75,0.04) 15px),
+        repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(196,112,75,0.04) 14px, rgba(196,112,75,0.04) 15px);
       pointer-events: none;
     }
-
-    /* Паттерн в футере */
-    footer {
-      position: relative;
-      overflow: hidden;
-    }
+    footer { position: relative; overflow: hidden; }
     footer::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background-image:
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 20px,
-          rgba(212,184,150,0.04) 20px,
-          rgba(212,184,150,0.04) 21px
-        ),
-        repeating-linear-gradient(
-          -45deg,
-          transparent,
-          transparent 20px,
-          rgba(212,184,150,0.04) 20px,
-          rgba(212,184,150,0.04) 21px
-        );
+        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(212,184,150,0.04) 20px, rgba(212,184,150,0.04) 21px),
+        repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(212,184,150,0.04) 20px, rgba(212,184,150,0.04) 21px);
       pointer-events: none;
     }
-
-    /* Декоративная текстурная полоса в about (тёмный акцент справа) */
     .about-texture-strip {
-      position: absolute;
-      top: 0;
-      left: -20px;
-      width: 6px;
-      height: 100%;
-      background: repeating-linear-gradient(
-        180deg,
-        var(--sand) 0px,
-        var(--sand) 4px,
-        transparent 4px,
-        transparent 10px
-      );
-      opacity: 0.35;
-      border-radius: 3px;
+      position: absolute; top: 0; left: -20px; width: 6px; height: 100%;
+      background: repeating-linear-gradient(180deg, var(--sand) 0px, var(--sand) 4px, transparent 4px, transparent 10px);
+      opacity: 0.35; border-radius: 3px;
     }
 
     /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 48px;
-      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
       background: rgba(250,246,241,0.93); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212,184,150,0.3);
-      transition: box-shadow 0.3s;
+      border-bottom: 1px solid rgba(212,184,150,0.3); transition: box-shadow 0.3s;
     }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 6px; color: var(--charcoal); text-decoration: none; }
     .nav-logo span { font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-left: 8px; vertical-align: middle; }
@@ -164,10 +84,8 @@
     .btn-primary:hover { background: var(--terracotta); transform: translateY(-2px); }
     .btn-secondary { display: inline-block; border: 1px solid var(--sand-dark); color: var(--charcoal); padding: 16px 36px; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.25s; }
     .btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); transform: translateY(-2px); }
-    .hero-right { position: relative; overflow: hidden; background: var(--sand-light); }
-    .hero-placeholder { width: 100%; height: 100%; min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand) 100%); gap: 16px; }
-    .hero-placeholder .icon { font-family: 'Cormorant Garamond', serif; font-size: 120px; color: rgba(255,255,255,0.4); line-height: 1; }
-    .hero-placeholder p { font-size: 11px; letter-spacing: 3px; color: rgba(45,45,45,0.35); text-transform: uppercase; }
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero-badge { position: absolute; bottom: 40px; right: 40px; background: rgba(45,45,45,0.88); backdrop-filter: blur(8px); color: white; padding: 20px 24px; border-radius: 4px; text-align: center; animation: fadeUp 0.8s 0.5s ease both; }
     .hero-badge-num { font-family: 'Cormorant Garamond', serif; font-size: 36px; color: var(--sand); line-height: 1; }
     .hero-badge-text { font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.55); margin-top: 4px; }
@@ -180,9 +98,8 @@
     /* ABOUT */
     .about { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1400px; margin: 0 auto; }
     .about-image-wrap { position: relative; }
-    .about-frame { width: 100%; aspect-ratio: 3/4; background: linear-gradient(160deg, var(--sand-light), var(--sand)); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; }
-    .about-frame .big-letter { font-family: 'Cormorant Garamond', serif; font-size: 160px; color: rgba(255,255,255,0.28); line-height: 1; }
-    .about-frame p { font-size: 10px; letter-spacing: 3px; color: rgba(45,45,45,0.28); text-transform: uppercase; }
+    .about-frame { width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; }
+    .about-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .about-accent { position: absolute; bottom: -24px; right: -24px; background: var(--terracotta); color: white; padding: 28px 32px; border-radius: 4px; }
     .about-accent-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: 1; }
     .about-accent-text { font-size: 9px; letter-spacing: 2px; opacity: 0.75; margin-top: 4px; }
@@ -199,18 +116,26 @@
     .section-header { text-align: center; margin-bottom: 60px; }
     .section-header .tag { margin-bottom: 12px; }
     .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,48px); font-weight: 300; letter-spacing: 3px; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; }
-    .gallery-item { position: relative; overflow: hidden; border-radius: 4px; }
-    .gallery-item:nth-child(2) { grid-row: span 2; }
-    .gallery-frame { width: 100%; aspect-ratio: 1; background: var(--sand-light); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; transition: transform 0.5s ease; }
-    .gallery-item:nth-child(2) .gallery-frame { aspect-ratio: auto; height: 100%; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .gallery-item:hover .gallery-frame { transform: scale(1.03); }
-    .gallery-ph { font-family: 'Cormorant Garamond', serif; font-size: 56px; color: rgba(212,184,150,0.5); }
-    .gallery-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(45,45,45,0.85)); padding: 32px 20px 20px; transform: translateY(100%); transition: transform 0.4s ease; }
-    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
-    .gallery-overlay h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: white; letter-spacing: 1px; }
-    .gallery-overlay p { font-size: 11px; color: var(--sand); margin-top: 4px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1300px; margin: 0 auto; }
+
+    /* BAG CARD */
+    .bag-card { position: relative; }
+    .bag-slider { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 3/4; background: var(--sand-light); cursor: grab; user-select: none; }
+    .bag-slider:active { cursor: grabbing; }
+    .bag-slides { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94); will-change: transform; }
+    .bag-slide { flex-shrink: 0; width: 100%; height: 100%; }
+    .bag-slide img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+    .bag-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+    .bag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sand); opacity: 0.4; transition: opacity 0.2s, background 0.2s; cursor: pointer; border: none; padding: 0; }
+    .bag-dot.active { opacity: 1; background: var(--terracotta); }
+    .bag-info { margin-top: 16px; }
+    .bag-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 4px; }
+    .bag-desc { font-size: 11px; color: #999; font-weight: 300; letter-spacing: 1px; }
+    .bag-arrows { position: absolute; top: 42%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 8px; pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 2; }
+    .bag-card:hover .bag-arrows { opacity: 1; }
+    .bag-arrow { pointer-events: all; background: rgba(255,255,255,0.88); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; color: var(--charcoal); transition: background 0.2s; line-height: 1; }
+    .bag-arrow:hover { background: white; }
+
     .gallery-note { text-align: center; margin-top: 48px; font-size: 13px; opacity: 0.6; font-weight: 300; }
     .gallery-note strong { color: var(--terracotta); font-weight: 500; }
 
@@ -279,17 +204,17 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* MOBILE */
+    @media (max-width: 1100px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; }
       .hero-left { padding: 60px 24px; }
-      .hero-right { height: 70vw; }
+      .hero-right { height: 100vw; }
       .about { grid-template-columns: 1fr; padding: 60px 24px; gap: 48px; }
       .about-accent { bottom: -16px; right: -16px; }
       .gallery { padding: 60px 24px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item:nth-child(2) { grid-row: span 1; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .process { padding: 60px 24px; }
       .process-grid { grid-template-columns: 1fr; gap: 0; }
       .process-item { padding: 24px 0; }
@@ -301,6 +226,10 @@
       footer { padding: 40px 24px; }
       .strip { padding: 20px 24px; gap: 24px; }
       .weave-divider { height: 40px; }
+      .bag-arrows { display: none; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
     }
   </style>
 </head>
@@ -322,21 +251,14 @@
     <div class="hero-tag">Сумки ручной работы · Рафия Ispie</div>
     <h1 class="hero-title serif">РАФИНАД</h1>
     <div class="hero-by">by Olga</div>
-    <p class="hero-desc">
-      Авторские сумки из премиальной рафии — каждая создаётся в единственном экземпляре. 
-      Не по схемам, не на потоке. Только ручная работа и 50 лет мастерства.
-    </p>
+    <p class="hero-desc">Авторские сумки из премиальной рафии — каждая создаётся в единственном экземпляре. Не по схемам, не на потоке. Только ручная работа и 50 лет мастерства.</p>
     <div class="hero-actions">
       <a href="#gallery" class="btn-primary">Смотреть коллекцию</a>
       <a href="#buy" class="btn-secondary">Где купить</a>
     </div>
   </div>
   <div class="hero-right">
-    <!-- ЗАМЕНИТЕ на: <img src="images/hero.jpg" alt="Сумка РАФИНАД" style="width:100%;height:100%;object-fit:cover"> -->
-    <div class="hero-placeholder">
-      <div class="icon serif">✿</div>
-      <p>Ваше лучшее фото сумки</p>
-    </div>
+    <img src="hero.jpg" alt="РАФИНАД — сумка ручной работы из рафии">
     <div class="hero-badge">
       <div class="hero-badge-num serif">4–8</div>
       <div class="hero-badge-text">сумок в месяц</div>
@@ -352,7 +274,6 @@
   <div class="strip-item"><span class="big serif">1/1</span><span>Каждая уникальна</span></div>
 </div>
 
-<!-- WEAVE DIVIDER 1: между strip и about -->
 <div class="weave-divider"></div>
 
 <!-- ABOUT -->
@@ -360,52 +281,27 @@
   <div class="about-image-wrap reveal">
     <div class="about-texture-strip"></div>
     <div class="about-frame">
-      <!-- ЗАМЕНИТЕ на: <img src="images/olga.jpg" alt="Мастер Ольга" style="width:100%;height:100%;object-fit:cover"> -->
-      <div class="big-letter serif">О</div>
-      <p>Фото мастера</p>
+      <img src="olga.jpg" alt="Ольга Козлова — мастер РАФИНАД">
     </div>
     <div class="about-accent">
       <div class="about-accent-num serif">50</div>
       <div class="about-accent-text">Лет опыта</div>
     </div>
   </div>
-
   <div class="about-content reveal">
     <div class="tag">01 / О мастере</div>
     <h2 class="serif">Ольга Козлова —<br>врач и мастер</h2>
-    <p>
-      Ольга вяжет с пятого класса — это почти пятьдесят лет практики, 
-      интуиции и любви к ремеслу. В основной жизни она врач и руководитель 
-      поликлиники: та же медицинская точность и внимание к каждой детали 
-      живёт в каждой петле её сумок.
-    </p>
-    <p>
-      Все модели — авторские, придуманные самой Ольгой. Никаких готовых схем, 
-      никаких повторов. Каждая сумка — это несколько вечеров, чашка чая 
-      и часть её истории.
-    </p>
+    <p>Ольга вяжет с пятого класса — это почти пятьдесят лет практики, интуиции и любви к ремеслу. В основной жизни она врач и руководитель поликлиники: та же медицинская точность и внимание к каждой детали живёт в каждой петле её сумок.</p>
+    <p>Все модели — авторские, придуманные самой Ольгой. Никаких готовых схем, никаких повторов. Каждая сумка — это несколько вечеров, чашка чая и часть её истории.</p>
     <div class="about-values">
-      <div class="value-item">
-        <h4>Натуральность</h4>
-        <p>Только рафия Ispie — экологичный материал растительного происхождения</p>
-      </div>
-      <div class="value-item">
-        <h4>Мастерство</h4>
-        <p>Полвека опыта в каждой петле — это невозможно подделать</p>
-      </div>
-      <div class="value-item">
-        <h4>Уникальность</h4>
-        <p>Ни одна сумка не повторяется — каждая единственная в своём роде</p>
-      </div>
-      <div class="value-item">
-        <h4>Душевность</h4>
-        <p>Хобби, ставшее делом. В каждой сумке — часть истории мастера</p>
-      </div>
+      <div class="value-item"><h4>Натуральность</h4><p>Только рафия Ispie — экологичный материал растительного происхождения</p></div>
+      <div class="value-item"><h4>Мастерство</h4><p>Полвека опыта в каждой петле — это невозможно подделать</p></div>
+      <div class="value-item"><h4>Уникальность</h4><p>Ни одна сумка не повторяется — каждая единственная в своём роде</p></div>
+      <div class="value-item"><h4>Душевность</h4><p>Хобби, ставшее делом. В каждой сумке — часть истории мастера</p></div>
     </div>
   </div>
 </section>
 
-<!-- WEAVE DIVIDER 2: между about и gallery -->
 <div class="weave-divider" style="background: white;"></div>
 
 <!-- GALLERY -->
@@ -415,31 +311,169 @@
     <h2 class="serif">Работы мастера</h2>
   </div>
   <div class="gallery-grid reveal">
-    <div class="gallery-item">
-      <div class="gallery-frame"><!-- <img src="images/bag1.jpg" alt=""> --><span class="gallery-ph serif">✿</span></div>
-      <div class="gallery-overlay"><h3 class="serif">Шоппер «Песчаный берег»</h3><p>Рафия Ispie · Ручная работа</p></div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag1-1.jpg" alt="Медовый полдень"></div>
+          <div class="bag-slide"><img src="bag1-2.jpg" alt="Медовый полдень — деталь"></div>
+          <div class="bag-slide"><img src="bag1-3.jpg" alt="Медовый полдень — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Медовый полдень»</div><div class="bag-desc">Рафия Ispie · Ручная работа</div></div>
     </div>
-    <div class="gallery-item">
-      <div class="gallery-frame" style="min-height:500px"><!-- <img src="images/bag2.jpg" alt=""> --><span class="gallery-ph serif">◈</span></div>
-      <div class="gallery-overlay"><h3 class="serif">Корзина «Летнее утро»</h3><p>Рафия Ispie · Авторская модель</p></div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag2-1.jpg" alt="Южный базар"></div>
+          <div class="bag-slide"><img src="bag2-2.jpg" alt="Южный базар — деталь"></div>
+          <div class="bag-slide"><img src="bag2-3.jpg" alt="Южный базар — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Южный базар»</div><div class="bag-desc">Рафия Ispie · Кожаные ручки</div></div>
     </div>
-    <div class="gallery-item">
-      <div class="gallery-frame"><!-- <img src="images/bag3.jpg" alt=""> --><span class="gallery-ph serif">✦</span></div>
-      <div class="gallery-overlay"><h3 class="serif">Клатч «Морской бриз»</h3><p>Рафия Ispie · Единственный экземпляр</p></div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag3-1.jpg" alt="Утренний бриз"></div>
+          <div class="bag-slide"><img src="bag3-2.jpg" alt="Утренний бриз — деталь"></div>
+          <div class="bag-slide"><img src="bag3-3.jpg" alt="Утренний бриз — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Утренний бриз»</div><div class="bag-desc">Рафия Ispie · Пастельные тона</div></div>
     </div>
-    <div class="gallery-item">
-      <div class="gallery-frame"><!-- <img src="images/bag4.jpg" alt=""> --><span class="gallery-ph serif">❀</span></div>
-      <div class="gallery-overlay"><h3 class="serif">Сумка «Терракота»</h3><p>Рафия Ispie · Ручная работа</p></div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag4-1.jpg" alt="Белый песок"></div>
+          <div class="bag-slide"><img src="bag4-2.jpg" alt="Белый песок — деталь"></div>
+          <div class="bag-slide"><img src="bag4-3.jpg" alt="Белый песок — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Белый песок»</div><div class="bag-desc">Рафия Ispie · Кремовый тон</div></div>
     </div>
-    <div class="gallery-item">
-      <div class="gallery-frame"><!-- <img src="images/bag5.jpg" alt=""> --><span class="gallery-ph serif">✿</span></div>
-      <div class="gallery-overlay"><h3 class="serif">Тоут «Рассвет»</h3><p>Рафия Ispie · Авторская модель</p></div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag5-1.jpg" alt="Абрикосовый закат"></div>
+          <div class="bag-slide"><img src="bag5-2.jpg" alt="Абрикосовый закат — деталь"></div>
+          <div class="bag-slide"><img src="bag5-3.jpg" alt="Абрикосовый закат — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Абрикосовый закат»</div><div class="bag-desc">Рафия Ispie · Тёплый персик</div></div>
     </div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag6-1.jpg" alt="Тосканский вечер"></div>
+          <div class="bag-slide"><img src="bag6-2.jpg" alt="Тосканский вечер — деталь"></div>
+          <div class="bag-slide"><img src="bag6-3.jpg" alt="Тосканский вечер — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Тосканский вечер»</div><div class="bag-desc">Рафия Ispie · Терракота</div></div>
+    </div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag7-1.jpg" alt="Золотой час"></div>
+          <div class="bag-slide"><img src="bag7-2.jpg" alt="Золотой час — деталь"></div>
+          <div class="bag-slide"><img src="bag7-3.jpg" alt="Золотой час — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Золотой час»</div><div class="bag-desc">Рафия Ispie · Сетчатое плетение</div></div>
+    </div>
+
+    <div class="bag-card">
+      <div class="bag-slider" data-index="0">
+        <div class="bag-slides">
+          <div class="bag-slide"><img src="bag8-1.jpg" alt="Прованс"></div>
+          <div class="bag-slide"><img src="bag8-2.jpg" alt="Прованс — деталь"></div>
+          <div class="bag-slide"><img src="bag8-3.jpg" alt="Прованс — в руке"></div>
+        </div>
+      </div>
+      <div class="bag-arrows">
+        <button class="bag-arrow" data-dir="-1">&#8249;</button>
+        <button class="bag-arrow" data-dir="1">&#8250;</button>
+      </div>
+      <div class="bag-dots">
+        <button class="bag-dot active"></button>
+        <button class="bag-dot"></button>
+        <button class="bag-dot"></button>
+      </div>
+      <div class="bag-info"><div class="bag-name serif">«Прованс»</div><div class="bag-desc">Рафия Ispie · Оливковый</div></div>
+    </div>
+
   </div>
-  <p class="gallery-note reveal">
-    Актуальные работы и наличие — на <strong>Ярмарке Мастеров</strong>.<br>
-    Ограниченный тираж: 4–8 сумок в месяц.
-  </p>
+  <p class="gallery-note reveal">Актуальные работы и наличие — на <strong>Ярмарке Мастеров</strong>.<br>Ограниченный тираж: 4–8 сумок в месяц.</p>
 </section>
 
 <!-- PROCESS -->
@@ -477,34 +511,10 @@
       <p>Ispie — один из лучших производителей рафии в мире. Именно этот материал выбирает Ольга, потому что он того стоит.</p>
     </div>
     <div class="facts reveal">
-      <div class="fact">
-        <div class="fact-icon serif">◈</div>
-        <div>
-          <h4>100% натуральный</h4>
-          <p>Растительное происхождение, экологичное производство</p>
-        </div>
-      </div>
-      <div class="fact">
-        <div class="fact-icon serif">✿</div>
-        <div>
-          <h4>Долговечный</h4>
-          <p>Правильно сплетённая рафия служит годами</p>
-        </div>
-      </div>
-      <div class="fact">
-        <div class="fact-icon serif">✦</div>
-        <div>
-          <h4>Уникальная текстура</h4>
-          <p>Каждая нить немного отличается — это красота натурального материала</p>
-        </div>
-      </div>
-      <div class="fact">
-        <div class="fact-icon serif">❀</div>
-        <div>
-          <h4>Лёгкий и прочный</h4>
-          <p>Летняя сумка не должна быть тяжёлой — рафия с этим справляется</p>
-        </div>
-      </div>
+      <div class="fact"><div class="fact-icon serif">◈</div><div><h4>100% натуральный</h4><p>Растительное происхождение, экологичное производство</p></div></div>
+      <div class="fact"><div class="fact-icon serif">✿</div><div><h4>Долговечный</h4><p>Правильно сплетённая рафия служит годами</p></div></div>
+      <div class="fact"><div class="fact-icon serif">✦</div><div><h4>Уникальная текстура</h4><p>Каждая нить немного отличается — это красота натурального материала</p></div></div>
+      <div class="fact"><div class="fact-icon serif">❀</div><div><h4>Лёгкий и прочный</h4><p>Летняя сумка не должна быть тяжёлой — рафия с этим справляется</p></div></div>
     </div>
   </div>
 </section>
@@ -512,10 +522,7 @@
 <!-- QUOTE -->
 <section class="quote-section">
   <div class="reveal">
-    <p class="quote-text serif">
-      «Эта сумка создавалась три вечера — под любимый сериал и чашку чая. 
-      Представляю, как вы идёте с ней по набережной утром...»
-    </p>
+    <p class="quote-text serif">«Эта сумка создавалась три вечера — под любимый сериал и чашку чая. Представляю, как вы идёте с ней по набережной утром...»</p>
     <div class="quote-author">— Ольга, мастер и основатель</div>
   </div>
 </section>
@@ -525,32 +532,23 @@
   <div class="reveal">
     <div class="tag">05 / Где купить</div>
     <h2 class="serif">Найти сумку</h2>
-    <p>
-      Актуальные работы и цены — на Ярмарке Мастеров и Авито.<br>
-      Есть вопросы? Напишите напрямую.
-    </p>
+    <p>Актуальные работы и цены — на Ярмарке Мастеров и Авито.<br>Есть вопросы? Напишите напрямую.</p>
   </div>
   <div class="buy-cards reveal">
     <a href="https://www.livemaster.ru" target="_blank" class="buy-card">
-      <!-- Замените href на вашу реальную ссылку магазина -->
       <div class="buy-card-tag">Основная витрина</div>
       <div class="buy-card-icon">🧺</div>
       <h3 class="serif">Ярмарка Мастеров</h3>
       <p>Полный каталог работ, описания, цены и возможность заказа</p>
     </a>
     <a href="https://www.avito.ru" target="_blank" class="buy-card">
-      <!-- Замените href на вашу реальную ссылку объявлений -->
       <div class="buy-card-tag">Дополнительный канал</div>
       <div class="buy-card-icon">🏷️</div>
       <h3 class="serif">Авито</h3>
       <p>Объявления с текущими работами и актуальными ценами</p>
     </a>
   </div>
-  <p class="buy-contact">
-    Вопросы и индивидуальные запросы: 
-    <a href="https://t.me/rafinad_bags">написать в Telegram</a>
-    <!-- Замените ссылку на реальный аккаунт -->
-  </p>
+  <p class="buy-contact">Вопросы и индивидуальные запросы: <a href="https://t.me/rafinad_bags">написать в Telegram</a></p>
 </section>
 
 <!-- FOOTER -->
@@ -591,20 +589,75 @@
 </footer>
 
 <script>
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
         setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  reveals.forEach(el => revealObserver.observe(el));
 
+  // Nav shadow
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     nav.style.boxShadow = window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
+  });
+
+  // Swipe gallery
+  function goToSlide(card, index) {
+    const slider = card.querySelector('.bag-slider');
+    const dots = card.querySelectorAll('.bag-dot');
+    const total = card.querySelectorAll('.bag-slide').length;
+    index = Math.max(0, Math.min(total - 1, index));
+    slider.dataset.index = index;
+    card.querySelector('.bag-slides').style.transform = 'translateX(-' + (index * 100) + '%)';
+    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  document.querySelectorAll('.bag-card').forEach(card => {
+    // Arrow buttons
+    card.querySelectorAll('.bag-arrow').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const slider = card.querySelector('.bag-slider');
+        const current = parseInt(slider.dataset.index) || 0;
+        goToSlide(card, current + parseInt(btn.dataset.dir));
+      });
+    });
+
+    // Dot buttons
+    card.querySelectorAll('.bag-dot').forEach((dot, i) => {
+      dot.addEventListener('click', () => goToSlide(card, i));
+    });
+
+    // Touch swipe
+    const slider = card.querySelector('.bag-slider');
+    let startX = 0;
+    slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        const current = parseInt(slider.dataset.index) || 0;
+        goToSlide(card, current + (diff > 0 ? 1 : -1));
+      }
+    });
+
+    // Mouse drag
+    let isDragging = false, mouseStartX = 0;
+    slider.addEventListener('mousedown', e => { isDragging = true; mouseStartX = e.clientX; });
+    slider.addEventListener('mouseup', e => {
+      if (!isDragging) return;
+      isDragging = false;
+      const diff = mouseStartX - e.clientX;
+      if (Math.abs(diff) > 40) {
+        const current = parseInt(slider.dataset.index) || 0;
+        goToSlide(card, current + (diff > 0 ? 1 : -1));
+      }
+    });
+    slider.addEventListener('mouseleave', () => { isDragging = false; });
   });
 </script>
 </body>
