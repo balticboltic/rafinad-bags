@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>РАФИНАД by Olga — Сумки ручной работы из рафии</title>
   <meta name="description" content="Авторские сумки ручной работы из премиальной рафии Ispie. Каждая сумка уникальна. Мастер с 50-летним опытом.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -120,7 +119,7 @@
     .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1300px; margin: 0 auto; }
 
     /* BAG CARD */
-    .bag-card { position: relative; }
+    .bag-card { position: relative; padding-bottom: 40px; }
     .bag-slider { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 3/4; background: var(--sand-light); cursor: grab; user-select: none; }
     .bag-slider:active { cursor: grabbing; }
     .bag-slides { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94); will-change: transform; }
@@ -129,9 +128,10 @@
     .bag-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
     .bag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sand); opacity: 0.4; transition: opacity 0.2s, background 0.2s; cursor: pointer; border: none; padding: 0; }
     .bag-dot.active { opacity: 1; background: var(--terracotta); }
-    .bag-info { margin-top: 16px; }
+    .bag-info { margin-top: 16px; margin-bottom: 12px; }
     .bag-name { font-family: 'Cormorant Garamond', serif; font-size: 18px; letter-spacing: 1px; margin-bottom: 4px; }
-    .bag-desc { font-size: 11px; color: #999; font-weight: 300; letter-spacing: 1px; }
+    .bag-desc { font-size: 11px; color: #999; font-weight: 300; letter-spacing: 1px; margin-bottom: 12px; }
+    .bag-specs { font-size: 11px; font-weight: 300; color: var(--charcoal); opacity: 0.5; line-height: 1.7; }
     .bag-arrows { position: absolute; top: 42%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 8px; pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 2; }
     .bag-card:hover .bag-arrows { opacity: 1; }
     .bag-arrow { pointer-events: all; background: rgba(255,255,255,0.88); border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; color: var(--charcoal); transition: background 0.2s; line-height: 1; }
@@ -222,17 +222,26 @@
       .about-accent-num { font-size: 32px; }
       .about-accent-text { font-size: 8px; }
       .about-image-wrap { overflow: hidden; }
-      .gallery { padding: 60px 24px; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .gallery { padding: 48px 24px 60px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 12px 16px; }
+      .bag-card { padding-bottom: 28px; border-bottom: 1px solid var(--sand-light); margin-bottom: 4px; }
+      .bag-name { font-size: 16px; }
+      .bag-specs { font-size: 10px; }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .bag-card { padding-bottom: 36px; margin-bottom: 0; }
+      .bag-card:last-child { border-bottom: none; }
+      .bag-name { font-size: 20px; }
       .process { padding: 60px 24px; }
       .process-grid { grid-template-columns: 1fr; gap: 0; }
-      .process-item { padding: 24px 0; }
+      .process-item { padding: 28px 0; }
       .materials { padding: 60px 24px; }
       .materials-inner { grid-template-columns: 1fr; gap: 48px; }
-      .quote-section { padding: 60px 24px; }
-      .buy { padding: 60px 24px; }
+      .quote-section { padding: 64px 24px; }
+      .buy { padding: 64px 24px; }
       .buy-cards { grid-template-columns: 1fr; }
-      footer { padding: 40px 24px; }
+      footer { padding: 48px 24px 32px; }
       .strip { padding: 16px 24px; gap: 16px; flex-direction: column; align-items: flex-start; }
       .strip-item { font-size: 9px; }
       .strip-item .big { font-size: 22px; }
@@ -243,7 +252,6 @@
       .hero-badge-text { font-size: 8px; }
     }
     @media (max-width: 480px) {
-      .gallery-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
     }
   </style>
 </head>
@@ -322,9 +330,9 @@
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag1-1.jpg" alt="Медовый полдень"></div>
-          <div class="bag-slide"><img src="bag1-2.jpg" alt="Медовый полдень — деталь"></div>
-          <div class="bag-slide"><img src="bag1-3.jpg" alt="Медовый полдень — в руке"></div>
+          <div class="bag-slide"><img src="bag1-1.jpg" alt="Медовый полдень" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag1-2.jpg" alt="Медовый полдень — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag1-3.jpg" alt="Медовый полдень — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -337,14 +345,15 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Медовый полдень»</div><div class="bag-desc">Рафия Ispie · Ручная работа</div></div>
+      <div class="bag-specs">Высота 28 см · Ширина 38 см · Глубина 14 см · Ручки 42 см</div>
     </div>
 
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag2-1.jpg" alt="Южный базар"></div>
-          <div class="bag-slide"><img src="bag2-2.jpg" alt="Южный базар — деталь"></div>
-          <div class="bag-slide"><img src="bag2-3.jpg" alt="Южный базар — в руке"></div>
+          <div class="bag-slide"><img src="bag2-1.jpg" alt="Южный базар" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag2-2.jpg" alt="Южный базар — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag2-3.jpg" alt="Южный базар — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -357,14 +366,15 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Южный базар»</div><div class="bag-desc">Рафия Ispie · Кожаные ручки</div></div>
+      <div class="bag-specs">Высота 32 см · Ширина 44 см · Глубина 16 см · Ручки 55 см</div>
     </div>
 
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag3-1.jpg" alt="Утренний бриз"></div>
-          <div class="bag-slide"><img src="bag3-2.jpg" alt="Утренний бриз — деталь"></div>
-          <div class="bag-slide"><img src="bag3-3.jpg" alt="Утренний бриз — в руке"></div>
+          <div class="bag-slide"><img src="bag3-1.jpg" alt="Утренний бриз" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag3-2.jpg" alt="Утренний бриз — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag3-3.jpg" alt="Утренний бриз — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -377,14 +387,15 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Утренний бриз»</div><div class="bag-desc">Рафия Ispie · Пастельные тона</div></div>
+      <div class="bag-specs">Высота 30 см · Ширина 40 см · Глубина 15 см · Ручки 48 см</div>
     </div>
 
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag4-1.jpg" alt="Белый песок"></div>
-          <div class="bag-slide"><img src="bag4-2.jpg" alt="Белый песок — деталь"></div>
-          <div class="bag-slide"><img src="bag4-3.jpg" alt="Белый песок — в руке"></div>
+          <div class="bag-slide"><img src="bag4-1.jpg" alt="Белый песок" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag4-2.jpg" alt="Белый песок — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag4-3.jpg" alt="Белый песок — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -397,14 +408,15 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Белый песок»</div><div class="bag-desc">Рафия Ispie · Кремовый тон</div></div>
+      <div class="bag-specs">Высота 26 см · Ширина 36 см · Глубина 13 см · Ручки 40 см</div>
     </div>
 
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag5-1.jpg" alt="Абрикосовый закат"></div>
-          <div class="bag-slide"><img src="bag5-2.jpg" alt="Абрикосовый закат — деталь"></div>
-          <div class="bag-slide"><img src="bag5-3.jpg" alt="Абрикосовый закат — в руке"></div>
+          <div class="bag-slide"><img src="bag5-1.jpg" alt="Абрикосовый закат" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag5-2.jpg" alt="Абрикосовый закат — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag5-3.jpg" alt="Абрикосовый закат — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -417,14 +429,15 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Абрикосовый закат»</div><div class="bag-desc">Рафия Ispie · Тёплый персик</div></div>
+      <div class="bag-specs">Высота 29 см · Ширина 42 см · Глубина 14 см · Ручки 50 см</div>
     </div>
 
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag6-1.jpg" alt="Тосканский вечер"></div>
-          <div class="bag-slide"><img src="bag6-2.jpg" alt="Тосканский вечер — деталь"></div>
-          <div class="bag-slide"><img src="bag6-3.jpg" alt="Тосканский вечер — в руке"></div>
+          <div class="bag-slide"><img src="bag6-1.jpg" alt="Тосканский вечер" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag6-2.jpg" alt="Тосканский вечер — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag6-3.jpg" alt="Тосканский вечер — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -437,14 +450,15 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Тосканский вечер»</div><div class="bag-desc">Рафия Ispie · Терракота</div></div>
+      <div class="bag-specs">Высота 31 см · Ширина 43 см · Глубина 15 см · Ручки 52 см</div>
     </div>
 
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag7-1.jpg" alt="Золотой час"></div>
-          <div class="bag-slide"><img src="bag7-2.jpg" alt="Золотой час — деталь"></div>
-          <div class="bag-slide"><img src="bag7-3.jpg" alt="Золотой час — в руке"></div>
+          <div class="bag-slide"><img src="bag7-1.jpg" alt="Золотой час" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag7-2.jpg" alt="Золотой час — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag7-3.jpg" alt="Золотой час — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -457,14 +471,15 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Золотой час»</div><div class="bag-desc">Рафия Ispie · Сетчатое плетение</div></div>
+      <div class="bag-specs">Высота 27 см · Ширина 37 см · Глубина 13 см · Ручки 44 см</div>
     </div>
 
     <div class="bag-card">
       <div class="bag-slider" data-index="0">
         <div class="bag-slides">
-          <div class="bag-slide"><img src="bag8-1.jpg" alt="Прованс"></div>
-          <div class="bag-slide"><img src="bag8-2.jpg" alt="Прованс — деталь"></div>
-          <div class="bag-slide"><img src="bag8-3.jpg" alt="Прованс — в руке"></div>
+          <div class="bag-slide"><img src="bag8-1.jpg" alt="Прованс" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag8-2.jpg" alt="Прованс — деталь" loading="lazy"></div>
+          <div class="bag-slide"><img src="bag8-3.jpg" alt="Прованс — в руке" loading="lazy"></div>
         </div>
       </div>
       <div class="bag-arrows">
@@ -477,6 +492,7 @@
         <button class="bag-dot"></button>
       </div>
       <div class="bag-info"><div class="bag-name serif">«Прованс»</div><div class="bag-desc">Рафия Ispie · Оливковый</div></div>
+      <div class="bag-specs">Высота 33 см · Ширина 46 см · Глубина 17 см · Ручки 58 см</div>
     </div>
 
   </div>
