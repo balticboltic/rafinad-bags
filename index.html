@@ -58,12 +58,21 @@
     }
 
     /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
-      background: rgba(250,246,241,0.93); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(212,184,150,0.3); transition: box-shadow 0.3s;
-    }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px; display: flex; justify-content: space-between; align-items: center;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+nav.nav-scrolled {
+  background: rgba(250,246,241,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,184,150,0.3);
+}
+    nav { padding: 16px 24px; background: transparent; }
+nav.nav-scrolled { background: rgba(250,246,241,0.95); }
+    
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 6px; color: var(--charcoal); text-decoration: none; }
     .nav-logo span { font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-left: 8px; vertical-align: middle; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
@@ -624,10 +633,16 @@
   reveals.forEach(el => revealObserver.observe(el));
 
   // Nav shadow
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,0.06)' : 'none';
-  });
+const nav = document.querySelector('nav');
+const hero = document.querySelector('.hero');
+
+const navObserver = new IntersectionObserver(
+  ([entry]) => {
+    nav.classList.toggle('nav-scrolled', !entry.isIntersecting);
+  },
+  { threshold: 0.1 }
+);
+navObserver.observe(hero);
 
   // Swipe gallery
   function goToSlide(card, index) {
