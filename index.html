@@ -216,6 +216,8 @@ nav.nav-scrolled {
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       nav.nav-scrolled { background: rgba(250,246,241,0.95); }  /* ← добавь */
+      .nav-logo { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+       nav.nav-scrolled .nav-logo { opacity: 1; pointer-events: auto; }
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
       .hero-left { padding: 48px 24px 24px; display: contents; }
