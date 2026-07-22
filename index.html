@@ -746,8 +746,7 @@ navObserver.observe(hero);
   // Individual order form — the bot token stays only in Supabase Edge Functions.
   const orderForm = document.querySelector('#custom-order');
   const orderStatus = document.querySelector('#order-status');
-  const orderEndpoint = 'https://rnfridjettxkdawcxcmp.supabase.co/functions/v1/submit-custom-request';
-  const supabasePublishableKey = 'sb_publishable_cgGz_9Ef8X8G-Ejobl60ug_iLV7FPov';
+  const orderEndpoint = 'https://d5dttu513ukq6koa4l9s.628pfjdx.apigw.yandexcloud.net/api/public/requests';
   if (orderForm) {
     orderForm.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -760,7 +759,7 @@ navObserver.observe(hero);
       }
       button.disabled = true; button.textContent = 'Отправляем…'; orderStatus.textContent = '';
       try {
-        const response = await fetch(orderEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: supabasePublishableKey }, body: JSON.stringify(values) });
+        const response = await fetch(orderEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) });
         const data = await response.json();
         if (!response.ok || !data.ok) throw new Error(data.error || 'Не удалось отправить запрос');
         orderForm.reset(); orderStatus.textContent = 'Спасибо! Ольга получила ваш запрос и скоро ответит.'; orderStatus.classList.add('success');
