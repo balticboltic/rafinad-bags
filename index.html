@@ -203,6 +203,19 @@ nav.nav-scrolled {
     .buy-card p { font-size: 12px; opacity: 0.6; margin: 0; line-height: 1.6; }
     .buy-contact { font-size: 13px; font-weight: 300; opacity: 0.6; }
     .buy-contact a { color: var(--terracotta); text-decoration: none; }
+    .order-form { max-width: 800px; margin: 0 auto; padding: 40px; text-align: left; background: var(--sand-light); border-top: 2px solid var(--terracotta); }
+    .order-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; margin-bottom: 8px; }
+    .order-form > p { font-size: 13px; line-height: 1.7; margin: 0 0 28px; opacity: 0.75; }
+    .order-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .order-field { display: grid; gap: 7px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+    .order-field.full { grid-column: 1 / -1; }
+    .order-field input, .order-field textarea { width: 100%; border: 1px solid var(--sand-dark); border-radius: 2px; background: white; color: var(--charcoal); font: 400 14px 'Montserrat', sans-serif; padding: 13px 14px; letter-spacing: 0; text-transform: none; }
+    .order-field textarea { min-height: 116px; resize: vertical; line-height: 1.55; }
+    .order-field input:focus, .order-field textarea:focus { outline: 2px solid var(--terracotta); outline-offset: 1px; border-color: var(--terracotta); }
+    .order-submit { margin-top: 22px; border: 0; cursor: pointer; font-family: 'Montserrat', sans-serif; }
+    .order-status { min-height: 22px; margin-top: 15px !important; font-size: 13px !important; opacity: 1 !important; color: var(--terracotta); }
+    .order-status.success { color: #426844; }
+    .order-honeypot { position: absolute !important; left: -9999px !important; opacity: 0 !important; pointer-events: none !important; }
 
     /* FOOTER */
     footer { background: var(--charcoal); padding: 60px 80px 40px; color: white; }
@@ -269,6 +282,8 @@ nav.nav-scrolled {
       .quote-section { padding: 64px 24px; }
       .buy { padding: 64px 24px; }
       .buy-cards { grid-template-columns: 1fr; }
+      .order-form { padding: 28px 20px; }
+      .order-grid { grid-template-columns: 1fr; }
       footer { padding: 48px 24px 32px; }
       .strip { padding: 16px 24px; gap: 16px; flex-direction: column; align-items: flex-start; }
       .strip-item { font-size: 9px; }
@@ -598,7 +613,19 @@ nav.nav-scrolled {
       <p>Объявления с текущими работами и актуальными ценами</p>
     </a>
   </div>
-  <p class="buy-contact">Вопросы и индивидуальные запросы: <a href="https://t.me/rafinad_bags">написать в Telegram</a></p>
+  <form class="order-form reveal" id="custom-order" novalidate>
+    <h3 class="serif">Индивидуальный заказ</h3>
+    <p>Расскажите, какую сумку вы ищете. Ольга посмотрит запрос и ответит лично — обычно в течение одного-двух дней.</p>
+    <div class="order-grid">
+      <label class="order-field">Как к вам обращаться<input name="name" autocomplete="name" maxlength="120" required></label>
+      <label class="order-field">Telegram или телефон<input name="contact" autocomplete="tel" maxlength="160" required></label>
+      <label class="order-field full">Пожелание к сумке<textarea name="message" maxlength="2000" placeholder="Цвет, размер, модель или просто идея — напишите в свободной форме" required></textarea></label>
+      <label class="order-field">Желаемый размер, если знаете<input name="preferred_size" maxlength="120" placeholder="Например: ширина около 40 см"></label>
+      <label class="order-field order-honeypot" aria-hidden="true">Сайт<input name="website" tabindex="-1" autocomplete="off"></label>
+    </div>
+    <button class="btn-primary order-submit" type="submit">Отправить запрос</button>
+    <p class="order-status" id="order-status" role="status" aria-live="polite"></p>
+  </form>
 </section>
 
 <!-- FOOTER -->
@@ -715,6 +742,34 @@ navObserver.observe(hero);
     });
     slider.addEventListener('mouseleave', () => { isDragging = false; });
   });
+
+  // Individual order form — the bot token stays only in Supabase Edge Functions.
+  const orderForm = document.querySelector('#custom-order');
+  const orderStatus = document.querySelector('#order-status');
+  const orderEndpoint = 'https://rnfridjettxkdawcxcmp.supabase.co/functions/v1/submit-custom-request';
+  const supabasePublishableKey = 'sb_publishable_cgGz_9Ef8X8G-Ejobl60ug_iLV7FPov';
+  if (orderForm) {
+    orderForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = orderForm.querySelector('button[type="submit"]');
+      const values = Object.fromEntries(new FormData(orderForm).entries());
+      if (!values.name?.trim() || !values.contact?.trim() || !values.message?.trim()) {
+        orderStatus.textContent = 'Пожалуйста, заполните имя, способ связи и пожелание.';
+        orderStatus.classList.remove('success');
+        return;
+      }
+      button.disabled = true; button.textContent = 'Отправляем…'; orderStatus.textContent = '';
+      try {
+        const response = await fetch(orderEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: supabasePublishableKey }, body: JSON.stringify(values) });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || 'Не удалось отправить запрос');
+        orderForm.reset(); orderStatus.textContent = 'Спасибо! Ольга получила ваш запрос и скоро ответит.'; orderStatus.classList.add('success');
+      } catch (error) {
+        orderStatus.textContent = 'Не получилось отправить запрос. Пожалуйста, попробуйте ещё раз чуть позже.';
+        orderStatus.classList.remove('success');
+      } finally { button.disabled = false; button.textContent = 'Отправить запрос'; }
+    });
+  }
 </script>
 </body>
 </html>
