@@ -38,37 +38,10 @@
     .serif { font-family: 'Cormorant Garamond', serif; }
     .tag { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--terracotta); font-weight: 500; }
 
-    /* TEXTURES */
-    .weave-divider { height: 64px; width: 100%; position: relative; overflow: hidden; }
-    .weave-divider::before {
-      content: ''; position: absolute; inset: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(180,155,117,0.18) 8px, rgba(180,155,117,0.18) 9px),
-        repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(180,155,117,0.18) 8px, rgba(180,155,117,0.18) 9px),
-        repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(180,155,117,0.07) 12px, rgba(180,155,117,0.07) 13px);
-      background-color: var(--cream);
-    }
-    .quote-section { position: relative; }
-    .quote-section::before {
-      content: ''; position: absolute; inset: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 14px, rgba(196,112,75,0.04) 14px, rgba(196,112,75,0.04) 15px),
-        repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(196,112,75,0.04) 14px, rgba(196,112,75,0.04) 15px);
-      pointer-events: none;
-    }
+    /* Quiet structure instead of decorative textures */
+    .weave-divider { height: 1px; width: min(calc(100% - 96px), 1320px); margin: 0 auto; background: var(--sand-light); }
     footer { position: relative; overflow: hidden; }
-    footer::before {
-      content: ''; position: absolute; inset: 0;
-      background-image:
-        repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(212,184,150,0.04) 20px, rgba(212,184,150,0.04) 21px),
-        repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(212,184,150,0.04) 20px, rgba(212,184,150,0.04) 21px);
-      pointer-events: none;
-    }
-    .about-texture-strip {
-      position: absolute; top: 0; left: -20px; width: 6px; height: 100%;
-      background: repeating-linear-gradient(180deg, var(--sand) 0px, var(--sand) 4px, transparent 4px, transparent 10px);
-      opacity: 0.35; border-radius: 3px;
-    }
+    .about-texture-strip { display: none; }
 
     /* NAV */
 nav {
@@ -294,7 +267,122 @@ nav.nav-scrolled {
       .hero-badge-num { font-size: 24px; }
       .hero-badge-text { font-size: 8px; }
     }
-    @media (max-width: 480px) {
+    /* RAFINAD 2026 — atelier direction */
+    :root {
+      --sand: #D8C7B1;
+      --sand-light: #EEE7DE;
+      --sand-dark: #B9A28A;
+      --terracotta: #B85F43;
+      --terracotta-light: #C9755B;
+      --cream: #F7F7F5;
+      --charcoal: #242323;
+      --sage: #5F6B56;
+      --gold: #B99B78;
+    }
+    body { background: var(--cream); }
+    nav { padding: 18px clamp(24px, 5vw, 80px); background: rgba(247,247,245,.92); border-bottom: 1px solid rgba(216,199,177,.72); }
+    nav.nav-scrolled { background: rgba(247,247,245,.97); box-shadow: 0 8px 28px rgba(36,35,35,.06); border-color: rgba(216,199,177,.95); }
+    .nav-logo { font-size: 23px; letter-spacing: 5px; }
+    .nav-logo span { font-size: 9px; letter-spacing: 2.2px; color: var(--terracotta); }
+    .nav-links { gap: clamp(18px, 2.4vw, 34px); align-items: center; }
+    .nav-links a { font-size: 10px; letter-spacing: 1.65px; opacity: .88; }
+    .nav-cta { padding: 11px 17px; border-radius: 0; }
+    .menu-toggle { display: none; border: 0; background: transparent; color: var(--charcoal); font: 500 10px 'Montserrat', sans-serif; letter-spacing: 1.7px; text-transform: uppercase; cursor: pointer; padding: 10px 0 10px 16px; }
+    .hero { min-height: auto; grid-template-columns: minmax(0, .92fr) minmax(420px, 1.08fr); padding-top: 73px; background: var(--cream); }
+    .hero-left { padding: clamp(84px, 10vw, 164px) clamp(30px, 5vw, 96px) clamp(72px, 9vw, 130px) max(24px, calc((100vw - 1360px) / 2)); }
+    .hero-tag { margin-bottom: 23px; letter-spacing: 3.5px; }
+    .hero-title { font-size: clamp(54px, 6.4vw, 98px); font-weight: 400; letter-spacing: .095em; margin-bottom: 10px; }
+    .hero-by { margin-bottom: 34px; color: var(--terracotta); font-size: 11px; letter-spacing: 3px; }
+    .hero-desc { max-width: 390px; margin-bottom: 37px; font-size: 13px; line-height: 1.9; opacity: .76; }
+    .btn-primary, .btn-secondary { border-radius: 0; padding: 15px 22px; letter-spacing: 1.7px; font-size: 10px; }
+    .btn-primary { background: var(--charcoal); }
+    .btn-primary:hover { background: var(--terracotta); transform: translateY(-1px); }
+    .btn-secondary { border-color: var(--charcoal); }
+    .hero-right { min-height: min(760px, calc(100vh - 73px)); }
+    .hero-right img { object-position: 56% center; }
+    .hero-badge { bottom: 0; right: 0; border-radius: 0; background: var(--terracotta); padding: 23px 26px; min-width: 118px; }
+    .hero-badge-num { color: white; font-size: 34px; }
+    .hero-badge-text { color: rgba(255,255,255,.84); line-height: 1.35; }
+    .strip { padding: 25px clamp(24px, 7vw, 120px); justify-content: space-between; gap: 28px; background: var(--charcoal); }
+    .strip-item { flex: 1 1 160px; gap: 10px; }
+    .strip-item .big { color: var(--sand); font-size: 25px; }
+    .about { padding: clamp(72px, 10vw, 150px) max(24px, calc((100vw - 1160px) / 2)); gap: clamp(48px, 7vw, 112px); max-width: 1420px; grid-template-columns: minmax(280px, .87fr) minmax(300px, 1fr); }
+    .about-frame { border-radius: 0; aspect-ratio: 4/5; }
+    .about-accent { border-radius: 0; right: -16px; bottom: -16px; padding: 24px 27px; }
+    .about-content h2 { font-size: clamp(42px, 4vw, 62px); font-weight: 400; letter-spacing: .015em; margin-bottom: 24px; }
+    .about-content p { max-width: 505px; font-size: 13px; }
+    .weave-divider { width: min(calc(100% - 48px), 1300px); }
+    .gallery { padding: clamp(76px, 10vw, 140px) max(24px, calc((100vw - 1360px) / 2)); background: white; }
+    .section-header { max-width: 600px; margin: 0 0 54px; text-align: left; }
+    .section-header h2 { font-size: clamp(42px, 4.2vw, 62px); font-weight: 400; letter-spacing: .01em; }
+    .gallery-grid { max-width: none; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 34px 24px; align-items: start; }
+    .bag-card { grid-column: span 3; padding: 0 0 24px; border-bottom: 1px solid var(--sand-light); margin: 0; }
+    .bag-card:nth-child(1) { grid-column: span 6; grid-row: span 2; }
+    .bag-card:nth-child(2), .bag-card:nth-child(3) { grid-column: span 3; }
+    .bag-slider { border-radius: 0; aspect-ratio: 4 / 5; background: #ece7df; }
+    .bag-card:nth-child(1) .bag-slider { aspect-ratio: 4 / 5; }
+    .bag-dots { justify-content: flex-start; margin-top: 11px; }
+    .bag-info { margin-top: 15px; margin-bottom: 9px; }
+    .bag-name { font-size: 23px; line-height: 1; letter-spacing: .01em; }
+    .bag-desc { color: var(--sage); font-size: 10px; letter-spacing: .8px; margin-bottom: 8px; }
+    .bag-specs { font-size: 10px; line-height: 1.6; opacity: .56; }
+    .bag-arrows { padding: 0 12px; }
+    .bag-arrow { border-radius: 0; width: 34px; height: 34px; }
+    .bag-commerce { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 17px; padding-top: 14px; border-top: 1px solid var(--sand-light); }
+    .bag-availability { color: var(--sage); font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .bag-inquiry { appearance: none; border: 0; background: transparent; color: var(--terracotta); font: 600 10px 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; padding: 5px 0; text-decoration: underline; text-underline-offset: 4px; }
+    .bag-inquiry:hover { color: var(--charcoal); }
+    .gallery-note { max-width: 470px; text-align: left; margin: 38px 0 0; line-height: 1.7; }
+    .process { padding: clamp(76px, 10vw, 140px) max(24px, calc((100vw - 1160px) / 2)); }
+    .process-grid { gap: 22px; margin-top: 36px; }
+    .process-item { padding: 28px 0; border-top: 1px solid var(--sand-dark); }
+    .process-num { color: var(--sand-dark); font-size: 56px; }
+    .materials { padding: clamp(76px, 10vw, 140px) max(24px, calc((100vw - 1160px) / 2)); }
+    .quote-section { background: var(--sand-light); padding: clamp(72px, 9vw, 130px) 24px; }
+    .buy { padding: clamp(76px, 10vw, 140px) 24px; background: white; }
+    .buy-cards { margin-bottom: 42px; }
+    .buy-card, .order-form { border-radius: 0; }
+    .buy-card { padding: 42px 35px; }
+    .buy-card-icon { display: none; }
+    .order-form { background: var(--sand-light); border-top-width: 1px; }
+    footer { background: var(--charcoal); }
+    @media (max-width: 900px) {
+      nav { padding: 14px 24px; }
+      .nav-logo { opacity: 1; pointer-events: auto; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--cream); padding: 10px 24px 22px; border-bottom: 1px solid var(--sand-light); }
+      .nav-links.is-open { display: grid; gap: 3px; }
+      .nav-links a { display: block; padding: 12px 0; }
+      .nav-cta { display: inline-block !important; width: fit-content; margin-top: 6px; }
+      .menu-toggle { display: block; }
+      .hero { grid-template-columns: 1fr; padding-top: 59px; }
+      .hero-left { display: block; padding: 74px 24px 47px; }
+      .hero-tag, .hero-title, .hero-by, .hero-desc, .hero-actions { padding: 0; }
+      .hero-right { order: 0; height: auto; min-height: 0; aspect-ratio: 1 / 1.08; }
+      .hero-desc { padding: 0; }
+      .hero-actions { padding: 0; }
+      .hero-badge { padding: 17px 18px; }
+      .about { grid-template-columns: 1fr; padding: 72px 24px; }
+      .about-image-wrap { overflow: visible; }
+      .gallery { padding: 72px 24px; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
+      .bag-card, .bag-card:nth-child(1), .bag-card:nth-child(2), .bag-card:nth-child(3) { grid-column: span 1; grid-row: auto; }
+      .bag-card:nth-child(1) { grid-column: span 2; }
+      .bag-card:nth-child(1) .bag-slider { aspect-ratio: 1 / 1; }
+      .bag-name { font-size: 20px; }
+      .process { padding: 72px 24px; }
+    }
+    @media (max-width: 560px) {
+      .hero-title { font-size: 58px; }
+      .strip { display: grid; grid-template-columns: 1fr 1fr; gap: 19px 12px; }
+      .strip-item { gap: 7px; min-width: 0; }
+      .strip-item .big { font-size: 21px; }
+      .strip-item span:last-child { font-size: 8px; letter-spacing: 1px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .bag-card:nth-child(1) { grid-column: span 1; }
+      .bag-card:nth-child(1) .bag-slider { aspect-ratio: 4 / 5; }
+      .bag-name { font-size: 24px; }
+      .bag-commerce { margin-top: 14px; }
+      .weave-divider { width: calc(100% - 48px); height: 1px; }
     }
   </style>
 </head>
@@ -302,7 +390,8 @@ nav.nav-scrolled {
 
 <nav>
   <a href="#" class="nav-logo serif">РАФИНАД <span>by Olga</span></a>
-  <ul class="nav-links">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">Меню</button>
+  <ul class="nav-links" id="site-navigation">
     <li><a href="#about">О мастере</a></li>
     <li><a href="#gallery">Коллекция</a></li>
     <li><a href="#materials">Материалы</a></li>
@@ -316,7 +405,7 @@ nav.nav-scrolled {
     <div class="hero-tag">Рафия · ручная работа</div>
     <h1 class="hero-title serif">РАФИНАД</h1>
     <div class="hero-by">by Olga</div>
-    <p class="hero-desc">Натуральное волокно, авторское плетение, восемь моделей в коллекции. Каждая сделана в одном экземпляре и больше не повторяется.</p>
+  <p class="hero-desc">Авторские сумки из натуральной рафии Ispie. Ольга плетёт каждую вручную — небольшими сериями, с вниманием к форме, фактуре и цвету.</p>
     <div class="hero-actions">
       <a href="#gallery" class="btn-primary">Смотреть коллекцию</a>
       <a href="#buy" class="btn-secondary">Где купить</a>
@@ -539,7 +628,7 @@ nav.nav-scrolled {
     </div>
 
   </div>
-  <p class="gallery-note reveal">Актуальные работы и наличие — на <strong>Ярмарке Мастеров</strong>.<br>Ограниченный тираж: 4–8 сумок в месяц.</p>
+  <p class="gallery-note reveal">Наличие и цену Ольга уточнит по запросу. В мастерской появляется только <strong>4–8 сумок в месяц</strong> — каждую можно обсудить до покупки.</p>
 </section>
 
 <!-- PROCESS -->
@@ -597,21 +686,19 @@ nav.nav-scrolled {
   <div class="reveal">
     <div class="tag">05 / Где купить</div>
     <h2 class="serif">Найти сумку</h2>
-    <p>Актуальные работы и цены на Ярмарке Мастеров и Авито. Если есть вопросы — пишите напрямую в Telegram.</p>
+    <p>Сейчас можно оставить запрос прямо здесь. Витрины на Ярмарке Мастеров и Авито появятся позже — ссылки добавим в карточки сумок.</p>
   </div>
   <div class="buy-cards reveal">
-    <a href="https://www.livemaster.ru" target="_blank" class="buy-card">
-      <div class="buy-card-tag">Основная витрина</div>
-      <div class="buy-card-icon">🧺</div>
+    <div class="buy-card">
+      <div class="buy-card-tag">Скоро</div>
       <h3 class="serif">Ярмарка Мастеров</h3>
-      <p>Полный каталог работ, описания, цены и возможность заказа</p>
-    </a>
-    <a href="https://www.avito.ru" target="_blank" class="buy-card">
-      <div class="buy-card-tag">Дополнительный канал</div>
-      <div class="buy-card-icon">🏷️</div>
-      <h3 class="serif">Авито</h3>
-      <p>Объявления с текущими работами и актуальными ценами</p>
-    </a>
+      <p>Здесь появятся отдельные объявления с описаниями, ценами и наличием.</p>
+    </div>
+    <div class="buy-card">
+      <div class="buy-card-tag">Сейчас</div>
+      <h3 class="serif">Личный запрос</h3>
+      <p>Расскажите, какая сумка вам понравилась — Ольга уточнит наличие и детали.</p>
+    </div>
   </div>
   <form class="order-form reveal" id="custom-order" novalidate>
     <h3 class="serif">Индивидуальный заказ</h3>
@@ -648,19 +735,14 @@ nav.nav-scrolled {
       <div class="footer-links">
         <h4>Контакты</h4>
         <ul>
-          <li><a href="https://t.me/rafinad_bags">Telegram</a></li>
-          <li><a href="https://www.livemaster.ru">Ярмарка Мастеров</a></li>
-          <li><a href="https://www.avito.ru">Авито</a></li>
+          <li><a href="#buy">Оставить запрос</a></li>
+          <li><span>Ярмарка Мастеров — скоро</span></li>
+          <li><span>Авито — скоро</span></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 РАФИНАД by Olga. Сумки ручной работы из рафии.</div>
-      <div class="footer-social">
-        <a href="#">Telegram</a>
-        <a href="#">ВКонтакте</a>
-        <a href="#">Ярмарка Мастеров</a>
-      </div>
+      <div class="footer-copy">© 2026 РАФИНАД by Olga. Сумки ручной работы из рафии.</div>
     </div>
   </div>
 </footer>
@@ -681,6 +763,21 @@ nav.nav-scrolled {
   // Nav shadow
 const nav = document.querySelector('nav');
 const hero = document.querySelector('.hero');
+const menuToggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.textContent = isOpen ? 'Закрыть' : 'Меню';
+  });
+  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    navLinks.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = 'Меню';
+  }));
+}
 
 const navObserver = new IntersectionObserver(
   ([entry]) => {
@@ -741,6 +838,22 @@ navObserver.observe(hero);
       }
     });
     slider.addEventListener('mouseleave', () => { isDragging = false; });
+
+    const name = card.querySelector('.bag-name')?.textContent?.replace(/[«»]/g, '').trim() || 'этой сумке';
+    const commerce = document.createElement('div');
+    commerce.className = 'bag-commerce';
+    commerce.innerHTML = '<span class="bag-availability">Наличие уточняется</span><button class="bag-inquiry" type="button">Узнать о сумке</button>';
+    commerce.querySelector('.bag-inquiry').addEventListener('click', () => {
+      const message = document.querySelector('#custom-order textarea[name="message"]');
+      document.querySelector('#buy')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.setTimeout(() => {
+        if (message) {
+          message.value = `Хочу узнать о сумке «${name}».`;
+          message.focus();
+        }
+      }, 450);
+    });
+    card.appendChild(commerce);
   });
 
   // Individual order form — the bot token stays only in Supabase Edge Functions.
