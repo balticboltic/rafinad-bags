@@ -1,4 +1,7 @@
-/* Цена и наличие в карточке сумки. Витрина собирается из кабинета мастера. */
+/* Витрина собирается из кабинета мастера.
+   Раскладку низа карточки задаёт сам сайт — здесь только то, чего в нём
+   не было: цена, оттенки статуса, заглушка кадра и видимый фокус. */
+
 .bag-slide--empty {
   display: grid;
   place-items: center;
@@ -6,76 +9,34 @@
   padding: 24px;
   background: #f1ece5;
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.06em;
   color: #8d857a;
   text-align: center;
 }
 
-.bag-commerce {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(45, 45, 45, 0.1);
-}
-
-.bag-availability {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 6px 10px;
-  border-radius: 3px;
-  background: #ece7e0;
-  color: #6d665d;
-}
-
-.bag-availability--available { background: #e4ebe1; color: #4a6350; }
-.bag-availability--made { background: #f4e6dd; color: #9a5334; }
-.bag-availability--sold { background: #eceaea; color: #6d6a6a; }
-
 .bag-price {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  color: #2d2d2d;
+  font-size: 21px;
+  color: var(--charcoal);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
-.bag-inquiry {
-  margin-left: auto;
-  min-height: 44px;
-  padding: 11px 18px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  color: #c4704b;
-  background: transparent;
-  border: 1px solid #c4704b;
-  border-radius: 3px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: background 0.25s ease, color 0.25s ease;
-}
+/* Наличие остаётся набранным текстом, как на всей странице. Различает
+   статусы только цвет: рамки и плашки утяжелили бы типографику. */
+.bag-availability--available { color: var(--sage); }
+.bag-availability--made { color: var(--terracotta); }
+.bag-availability--sold { color: var(--sand-dark); }
 
-.bag-inquiry:hover { background: #c4704b; color: #fff; }
-.bag-inquiry:focus-visible { outline: 3px solid #2d2d2d; outline-offset: 2px; }
-
+.bag-inquiry:focus-visible,
 .bag-arrow:focus-visible,
-.bag-dot:focus-visible { outline: 3px solid #2d2d2d; outline-offset: 2px; }
+.bag-dot:focus-visible { outline: 2px solid var(--charcoal); outline-offset: 3px; }
 
 @media (max-width: 560px) {
-  .bag-commerce { gap: 8px 12px; }
-  .bag-inquiry { margin-left: 0; width: 100%; justify-content: center; }
+  .bag-price { font-size: 19px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .bag-slides { transition: none !important; }
-  .bag-inquiry { transition: none; }
 }

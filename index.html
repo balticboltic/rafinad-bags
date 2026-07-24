@@ -31,6 +31,15 @@
       --charcoal: #2D2D2D;
       --sage: #8B9A7D;
       --gold: #B8956B;
+
+      /* Одна полоса содержимого на всю страницу. Фон секции идёт во всю
+         ширину экрана, а текст и сетки живут внутри полосы, поэтому левые
+         края всех разделов совпадают. Боковой отступ считается от окна:
+         у секции с таким отступом не должно быть своего ограничения
+         ширины, иначе отступы съедают её целиком. Длину строки держим
+         ограничением самого абзаца, а не сужением раздела. */
+      --band: 1360px;
+      --edge: max(24px, calc((100vw - var(--band)) / 2));
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -91,7 +100,7 @@ nav.nav-scrolled {
     .strip-item .big { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--sand); }
 
     /* ABOUT */
-    .about { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .about { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .about-image-wrap { position: relative; }
     .about-frame { width: 100%; aspect-ratio: 3/4; border-radius: 4px; overflow: hidden; }
     .about-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -136,7 +145,7 @@ nav.nav-scrolled {
     .gallery-note strong { color: var(--terracotta); font-weight: 500; }
 
     /* PROCESS */
-    .process { padding: 120px 80px; max-width: 1400px; margin: 0 auto; }
+    .process { padding: 120px 80px; }
     .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 60px; }
     .process-item { padding: 40px; border-top: 2px solid var(--sand-light); transition: border-color 0.3s; }
     .process-item:hover { border-color: var(--terracotta); }
@@ -146,7 +155,7 @@ nav.nav-scrolled {
 
     /* MATERIALS */
     .materials { background: var(--charcoal); padding: 120px 80px; color: white; }
-    .materials-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .materials-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .materials .tag { color: var(--sand); margin-bottom: 16px; }
     .materials h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3vw,52px); font-weight: 300; letter-spacing: 2px; line-height: 1.2; margin-bottom: 32px; }
     .materials p { font-size: 14px; font-weight: 300; line-height: 1.9; opacity: 0.7; margin-bottom: 16px; }
@@ -289,7 +298,7 @@ nav.nav-scrolled {
     .nav-cta { padding: 11px 17px; border-radius: 0; }
     .menu-toggle { display: none; border: 0; background: transparent; color: var(--charcoal); font: 500 10px 'Montserrat', sans-serif; letter-spacing: 1.7px; text-transform: uppercase; cursor: pointer; padding: 10px 0 10px 16px; }
     .hero { min-height: auto; grid-template-columns: minmax(0, .92fr) minmax(420px, 1.08fr); padding-top: 73px; background: var(--cream); }
-    .hero-left { padding: clamp(84px, 10vw, 164px) clamp(30px, 5vw, 96px) clamp(72px, 9vw, 130px) max(24px, calc((100vw - 1360px) / 2)); }
+    .hero-left { padding: clamp(84px, 10vw, 164px) clamp(30px, 5vw, 96px) clamp(72px, 9vw, 130px) var(--edge); }
     .hero-tag { margin-bottom: 23px; letter-spacing: 3.5px; }
     .hero-title { font-size: clamp(54px, 6.4vw, 98px); font-weight: 400; letter-spacing: .095em; margin-bottom: 10px; }
     .hero-by { margin-bottom: 34px; color: var(--terracotta); font-size: 11px; letter-spacing: 3px; }
@@ -306,17 +315,21 @@ nav.nav-scrolled {
     .strip { padding: 25px clamp(24px, 7vw, 120px); justify-content: space-between; gap: 28px; background: var(--charcoal); }
     .strip-item { flex: 1 1 160px; gap: 10px; }
     .strip-item .big { color: var(--sand); font-size: 25px; }
-    .about { padding: clamp(72px, 10vw, 150px) max(24px, calc((100vw - 1160px) / 2)); gap: clamp(48px, 7vw, 112px); max-width: 1420px; grid-template-columns: minmax(280px, .87fr) minmax(300px, 1fr); }
+    .about { padding: clamp(72px, 10vw, 150px) var(--edge); gap: clamp(48px, 7vw, 112px); grid-template-columns: minmax(280px, .87fr) minmax(300px, 1fr); }
     .about-frame { border-radius: 0; aspect-ratio: 4/5; }
     .about-accent { border-radius: 0; right: -16px; bottom: -16px; padding: 24px 27px; }
     .about-content h2 { font-size: clamp(42px, 4vw, 62px); font-weight: 400; letter-spacing: .015em; margin-bottom: 24px; }
     .about-content p { max-width: 505px; font-size: 13px; }
     .weave-divider { width: min(calc(100% - 48px), 1300px); }
-    .gallery { padding: clamp(76px, 10vw, 140px) max(24px, calc((100vw - 1360px) / 2)); background: white; }
+    .gallery { padding: clamp(76px, 10vw, 140px) var(--edge); background: white; }
     .section-header { max-width: 600px; margin: 0 0 54px; text-align: left; }
     .section-header h2 { font-size: clamp(42px, 4.2vw, 62px); font-weight: 400; letter-spacing: .01em; }
-    .gallery-grid { max-width: none; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 34px 24px; align-items: start; }
-    .bag-card { grid-column: span 3; padding: 0 0 24px; border-bottom: 1px solid var(--sand-light); margin: 0; }
+    /* Карточки тянутся на всю высоту ряда, а цена с обращением прижаты к низу:
+       у сумки без указанных размеров на строку меньше, и без этого ряд стоит
+       уступом. Вид витрины не должен зависеть от полноты данных. */
+    .gallery-grid { max-width: none; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 34px 24px; align-items: stretch; }
+    .bag-card { grid-column: span 3; padding: 0 0 24px; border-bottom: 1px solid var(--sand-light); margin: 0; display: flex; flex-direction: column; }
+    .bag-card .bag-commerce { margin-top: auto; }
     .bag-card:nth-child(1) { grid-column: span 6; grid-row: span 2; }
     .bag-card:nth-child(2), .bag-card:nth-child(3) { grid-column: span 3; }
     .bag-slider { border-radius: 0; aspect-ratio: 4 / 5; background: #ece7df; }
@@ -333,13 +346,17 @@ nav.nav-scrolled {
     .bag-inquiry { appearance: none; border: 0; background: transparent; color: var(--terracotta); font: 600 10px 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; padding: 5px 0; text-decoration: underline; text-underline-offset: 4px; }
     .bag-inquiry:hover { color: var(--charcoal); }
     .gallery-note { max-width: 470px; text-align: left; margin: 38px 0 0; line-height: 1.7; }
-    .process { padding: clamp(76px, 10vw, 140px) max(24px, calc((100vw - 1160px) / 2)); }
+    .process { padding: clamp(76px, 10vw, 140px) var(--edge); }
     .process-grid { gap: 22px; margin-top: 36px; }
     .process-item { padding: 28px 0; border-top: 1px solid var(--sand-dark); }
     .process-num { color: var(--sand-dark); font-size: 56px; }
-    .materials { padding: clamp(76px, 10vw, 140px) max(24px, calc((100vw - 1160px) / 2)); }
+    .materials { padding: clamp(76px, 10vw, 140px) var(--edge); }
     .quote-section { background: var(--sand-light); padding: clamp(72px, 9vw, 130px) 24px; }
-    .buy { padding: clamp(76px, 10vw, 140px) 24px; background: white; }
+    .buy { padding: clamp(76px, 10vw, 140px) var(--edge); background: white; }
+    /* Секция осталась по центру, тогда как остальные заголовки съехали влево
+       при обновлении вида. Ширину строки ограничиваем здесь: без этого абзац
+       растягивается на всю полосу и его нечитаемо вести глазом. */
+    .buy-intro p { max-width: 60ch; margin: 0 auto; }
     .buy-cards { margin-bottom: 42px; }
     .buy-card, .order-form { border-radius: 0; }
     .buy-card { padding: 42px 35px; }
@@ -685,7 +702,7 @@ nav.nav-scrolled {
 
 <!-- BUY -->
 <section class="buy" id="buy">
-  <div class="reveal">
+  <div class="buy-intro reveal">
     <div class="tag">05 / Где купить</div>
     <h2 class="serif">Найти сумку</h2>
     <p>Сейчас можно оставить запрос прямо здесь. Витрины на Ярмарке Мастеров и Авито появятся позже — ссылки добавим в карточки сумок.</p>

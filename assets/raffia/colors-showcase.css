@@ -1,22 +1,24 @@
+/* Блок встаёт на ту же полосу, что витрина сумок: иначе левые края
+   соседних секций расходятся на три десятка пикселей и это заметно. */
 .raffia-colors {
-  padding: clamp(72px, 10vw, 136px) clamp(24px, 7vw, 80px);
+  padding: clamp(72px, 10vw, 136px) var(--edge, clamp(24px, 7vw, 80px));
   background: #e8dcc8;
 }
 
 .raffia-colors__layout {
   display: grid;
-  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.8fr);
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 1.55fr);
   gap: clamp(32px, 7vw, 104px);
-  max-width: 1300px;
-  margin: 0 auto;
   align-items: end;
 }
 
-.raffia-colors__copy { max-width: 365px; }
+/* Заголовок раньше рос вместе с экраном, а колонка под ним — нет, и на
+   широком мониторе «Сумка в вашем оттенке» разваливалась на три строки. */
+.raffia-colors__copy { max-width: 460px; }
 .raffia-colors__copy h2 {
   margin: 0 0 24px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(38px, 4.3vw, 66px);
+  font-size: clamp(38px, 3.4vw, 54px);
   font-weight: 300;
   line-height: 0.98;
   letter-spacing: 0.01em;
