@@ -386,6 +386,7 @@ nav.nav-scrolled {
     }
   </style>
   <link rel="stylesheet" href="assets/raffia/colors-showcase.css">
+  <link rel="stylesheet" href="assets/catalog/catalog.css">
 </head>
 <body>
 
@@ -799,7 +800,21 @@ navObserver.observe(hero);
     dots.forEach((d, i) => d.classList.toggle('active', i === index));
   }
 
-  document.querySelectorAll('.bag-card').forEach(card => {
+  // Asking about a bag always means the same thing: go to the form and start
+  // the message for the visitor. The wording is passed in, because a sold bag
+  // and an available one are different questions.
+  function startInquiry(text) {
+    const message = document.querySelector('#custom-order textarea[name="message"]');
+    document.querySelector('#buy')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => {
+      if (message) {
+        message.value = text;
+        message.focus();
+      }
+    }, 450);
+  }
+
+  function wireBagCard(card) {
     // Arrow buttons
     card.querySelectorAll('.bag-arrow').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -840,22 +855,19 @@ navObserver.observe(hero);
     });
     slider.addEventListener('mouseleave', () => { isDragging = false; });
 
+    // A card built from the atelier brings its own price and availability.
+    // Only the fallback cards below need this generic block.
+    if (card.querySelector('.bag-commerce')) return;
     const name = card.querySelector('.bag-name')?.textContent?.replace(/[«»]/g, '').trim() || 'этой сумке';
     const commerce = document.createElement('div');
     commerce.className = 'bag-commerce';
     commerce.innerHTML = '<span class="bag-availability">Наличие уточняется</span><button class="bag-inquiry" type="button">Узнать о сумке</button>';
-    commerce.querySelector('.bag-inquiry').addEventListener('click', () => {
-      const message = document.querySelector('#custom-order textarea[name="message"]');
-      document.querySelector('#buy')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      window.setTimeout(() => {
-        if (message) {
-          message.value = `Хочу узнать о сумке «${name}».`;
-          message.focus();
-        }
-      }, 450);
-    });
+    commerce.querySelector('.bag-inquiry').addEventListener('click', () => startInquiry(`Хочу узнать о сумке «${name}».`));
     card.appendChild(commerce);
-  });
+  }
+
+  document.querySelectorAll('.bag-card').forEach(wireBagCard);
+  window.RAFINAD = { wireBagCard, startInquiry };
 
   // Individual order form — the bot token stays only in Supabase Edge Functions.
   const orderForm = document.querySelector('#custom-order');
@@ -884,6 +896,7 @@ navObserver.observe(hero);
     });
   }
 </script>
+<script src="assets/catalog/catalog.js"></script>
 <script src="assets/raffia/colors-showcase.js" defer></script>
 </body>
 </html>
