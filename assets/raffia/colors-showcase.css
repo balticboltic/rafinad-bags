@@ -31,42 +31,51 @@
   font-size: 14px;
   line-height: 1.8;
 }
-.raffia-colors__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+/* Лента мотков: один ряд, листается стрелками на десктопе и свайпом на
+   телефоне. Раз это фотографии, их листают, а не давят стеной. */
+.raffia-colors__ribbon-wrap { position: relative; min-width: 0; }
+.raffia-colors__ribbon {
+  display: flex;
   gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 6px;
 }
+.raffia-colors__ribbon::-webkit-scrollbar { display: none; }
 .raffia-color-card {
+  flex: 0 0 220px;
   min-width: 0;
+  scroll-snap-align: start;
   background: #faf6f1;
   border-radius: 4px;
   overflow: hidden;
 }
-.raffia-color-card img {
+.raffia-color-card__photo {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  padding: 0;
+  border: 0;
   background: #d4b896;
+  cursor: zoom-in;
 }
-.raffia-color-card__body { padding: 13px 12px 14px; }
+.raffia-color-card__photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.raffia-color-card__body { padding: 12px 13px 14px; }
 .raffia-color-card h3 {
   margin: 0;
   color: #2d2d2d;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  line-height: 1.35;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
 }
-.raffia-color-card p {
-  min-height: 1.5em;
-  margin: 5px 0 0;
-  color: #916548;
-  font-size: 10px;
-  line-height: 1.35;
-}
-.raffia-color-card button {
-  width: 100%;
-  margin-top: 10px;
+.raffia-color-card__pick {
+  margin-top: 8px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -74,10 +83,30 @@
   font: inherit;
   font-size: 10px;
   letter-spacing: 0.09em;
-  text-align: left;
   text-transform: uppercase;
+  cursor: pointer;
 }
-.raffia-color-card button:hover { color: #2d2d2d; }
+.raffia-color-card__pick:hover { color: #2d2d2d; }
+.raffia-colors__arrow {
+  position: absolute;
+  top: calc(50% - 34px);
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #2d2d2d;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+.raffia-colors__arrow--prev { left: -14px; }
+.raffia-colors__arrow--next { right: -14px; }
+.raffia-colors__arrow:focus-visible { outline: 3px solid #2d2d2d; outline-offset: 2px; }
 .raffia-colors__note {
   max-width: 1300px;
   margin: 26px auto 0;
@@ -92,7 +121,7 @@
 }
 @media (max-width: 640px) {
   .raffia-colors { padding-inline: 20px; }
-  .raffia-colors__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .raffia-color-card { flex-basis: 74%; }
   .raffia-color-card__body { padding: 11px; }
+  .raffia-colors__arrow { display: none; }
 }
-@media (prefers-reduced-motion: reduce) { .raffia-color-card button { transition: none; } }

@@ -404,6 +404,7 @@ nav.nav-scrolled {
   </style>
   <link rel="stylesheet" href="assets/raffia/colors-showcase.css">
   <link rel="stylesheet" href="assets/catalog/catalog.css">
+  <link rel="stylesheet" href="assets/lightbox/lightbox.css">
 </head>
 <body>
 
@@ -872,6 +873,19 @@ navObserver.observe(hero);
     });
     slider.addEventListener('mouseleave', () => { isDragging = false; });
 
+    // A tap on a photo opens it enlarged. A drag of the carousel must not
+    // trigger it, so we ignore a click that moved more than a few pixels.
+    const bagName = card.querySelector('.bag-name')?.textContent?.replace(/[«»]/g, '').trim() || '';
+    let tapX = 0, tapY = 0, tapMoved = false;
+    slider.addEventListener('pointerdown', e => { tapX = e.clientX; tapY = e.clientY; tapMoved = false; });
+    slider.addEventListener('pointermove', e => { if (Math.abs(e.clientX - tapX) > 8 || Math.abs(e.clientY - tapY) > 8) tapMoved = true; });
+    slider.addEventListener('click', () => {
+      if (tapMoved) return;
+      const shots = [...card.querySelectorAll('.bag-slide img')].map(image => ({ src: image.src, alt: image.alt, caption: bagName }));
+      if (shots.length && window.RAFINAD?.openLightbox) window.RAFINAD.openLightbox(shots, parseInt(slider.dataset.index) || 0);
+    });
+    slider.style.cursor = 'zoom-in';
+
     // A card built from the atelier brings its own price and availability.
     // Only the fallback cards below need this generic block.
     if (card.querySelector('.bag-commerce')) return;
@@ -884,7 +898,9 @@ navObserver.observe(hero);
   }
 
   document.querySelectorAll('.bag-card').forEach(wireBagCard);
-  window.RAFINAD = { wireBagCard, startInquiry };
+  // Merge, not replace: the lightbox script sets window.RAFINAD.openLightbox
+  // and load order between the two must not matter.
+  window.RAFINAD = Object.assign(window.RAFINAD || {}, { wireBagCard, startInquiry });
 
   // Individual order form — the bot token stays only in Supabase Edge Functions.
   const orderForm = document.querySelector('#custom-order');
@@ -913,6 +929,7 @@ navObserver.observe(hero);
     });
   }
 </script>
+<script src="assets/lightbox/lightbox.js"></script>
 <script src="assets/catalog/catalog.js"></script>
 <script src="assets/raffia/colors-showcase.js" defer></script>
 </body>
