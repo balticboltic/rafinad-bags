@@ -15,7 +15,7 @@
 <!-- /Yandex.Metrika counter -->
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>РАФИНАД by Olga — Сумки ручной работы из рафии</title>
   <meta name="description" content="Авторские сумки ручной работы из рафии Ispie. Каждая сумка уникальна. Мастер с 50-летним опытом.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -934,6 +934,24 @@ navObserver.observe(hero);
   // Merge, not replace: the lightbox script sets window.RAFINAD.openLightbox
   // and load order between the two must not matter.
   window.RAFINAD = Object.assign(window.RAFINAD || {}, { wireBagCard, startInquiry });
+
+  // Keep the floating contact bar above the browser's own bottom chrome.
+  // Yandex on Android keeps its address bar at the bottom and overlays anything
+  // pinned to bottom:0. The visual viewport shrinks by whatever chrome is shown,
+  // so lifting the bar by that gap places it just above the browser's bar and
+  // drops it back when the browser hides it on scroll.
+  (function () {
+    const bar = document.querySelector('.contact-bar');
+    const vv = window.visualViewport;
+    if (!bar || !vv) return;
+    const place = () => {
+      const gap = window.innerHeight - vv.height - vv.offsetTop;
+      bar.style.bottom = (gap > 1 ? Math.round(gap) : 0) + 'px';
+    };
+    vv.addEventListener('resize', place);
+    vv.addEventListener('scroll', place);
+    place();
+  })();
 
   // Individual order form — the bot token stays only in Supabase Edge Functions.
   const orderForm = document.querySelector('#custom-order');
