@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Уход за сумкой из рафии — РАФИНАД by Olga</title>
+  <meta name="description" content="Как ухаживать за сумкой из рафии Ispie: чистка, пятна, форма, хранение. Короткие правила от мастера.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #D8C7B1;
+      --sand-light: #EEE7DE;
+      --sand-dark: #B9A28A;
+      --terracotta: #B85F43;
+      --terracotta-light: #C9755B;
+      --cream: #F7F7F5;
+      --charcoal: #242323;
+      --sage: #5F6B56;
+      --gold: #B99B78;
+
+      /* Полоса чтения. На витрине главной страницы полоса широкая, но эту
+         страницу читают подряд, поэтому строка ограничена по длине: около
+         70 знаков — предел, после которого глаз теряет начало следующей. */
+      --read: 720px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .wrap { width: 100%; max-width: var(--read); margin: 0 auto; padding: 0 24px; }
+
+    /* NAV — упрощённый против главной: на странице-инструкции меню не нужно,
+       нужен только обратный путь. Ни выпадающих списков, ни JS. */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px;
+      padding: 14px clamp(20px, 5vw, 48px);
+      padding-top: max(14px, env(safe-area-inset-top));
+      background: rgba(247,247,245,.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(216,199,177,.72);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 21px; letter-spacing: 5px; color: var(--charcoal); text-decoration: none; white-space: nowrap; }
+    .nav-logo span { font-size: 9px; letter-spacing: 2.2px; color: var(--terracotta); margin-left: 7px; vertical-align: middle; }
+    .nav-back { font-size: 10px; letter-spacing: 1.65px; text-transform: uppercase; color: var(--charcoal); text-decoration: none; opacity: .82; border-bottom: 1px solid var(--sand-dark); padding-bottom: 3px; white-space: nowrap; }
+    .nav-back:hover { color: var(--terracotta); border-color: var(--terracotta); opacity: 1; }
+
+    /* HEAD */
+    .page-head { padding: clamp(104px, 17vw, 148px) 0 clamp(40px, 7vw, 60px); }
+    .tag { font-size: 10px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--terracotta); font-weight: 500; }
+    .page-head .tag { margin-bottom: 20px; }
+    .page-head h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 8vw, 62px); font-weight: 400; letter-spacing: .015em; line-height: 1.08; margin-bottom: 28px; }
+    .lede p { font-size: 15px; font-weight: 300; line-height: 1.85; opacity: .84; margin-bottom: 14px; }
+    .lede p:last-child { margin-bottom: 0; }
+    .lede strong { font-weight: 500; opacity: 1; }
+
+    /* ПАМЯТКА — четыре правила, ради которых страницу и открывают */
+    .rules { background: var(--charcoal); color: white; padding: clamp(36px, 7vw, 52px) 0; }
+    .rules .tag { color: var(--sand); margin-bottom: 22px; }
+    .rules-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.12); }
+    .rule { background: var(--charcoal); padding: 22px 20px; }
+    .rule-num { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--sand); line-height: 1; margin-bottom: 10px; display: block; }
+    .rule p { font-size: 13px; font-weight: 400; line-height: 1.6; color: rgba(255,255,255,.9); }
+    .rule small { display: block; margin-top: 6px; font-size: 11px; font-weight: 300; line-height: 1.55; color: rgba(255,255,255,.5); }
+
+    /* ЯКОРНЫЕ ЧИПЫ — навигация по ситуациям, а не по темам: человек открывает
+       страницу с конкретной бедой в руках и ищет её название. */
+    .jump { padding: clamp(36px, 7vw, 52px) 0 0; }
+    .jump .tag { margin-bottom: 16px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { font-size: 11px; letter-spacing: .06em; color: var(--charcoal); text-decoration: none; padding: 9px 14px; border: 1px solid var(--sand-dark); background: white; transition: background .2s, color .2s, border-color .2s; }
+    .chip:hover { background: var(--terracotta); border-color: var(--terracotta); color: white; }
+
+    /* КАРТОЧКИ */
+    .steps { padding: clamp(32px, 6vw, 44px) 0 clamp(56px, 9vw, 80px); }
+    .step { scroll-margin-top: 78px; padding: clamp(28px, 5vw, 38px) 0; border-top: 1px solid var(--sand-dark); }
+    .step:first-child { border-top: 0; padding-top: clamp(12px, 3vw, 20px); }
+    .step-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: var(--sand-dark); line-height: 1; margin-bottom: 12px; }
+    .step h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5.4vw, 38px); font-weight: 400; letter-spacing: .01em; line-height: 1.15; margin-bottom: 18px; }
+    .step p { font-size: 15px; font-weight: 300; line-height: 1.8; opacity: .84; margin-bottom: 12px; }
+    .step p:last-child { margin-bottom: 0; }
+    .step p.lead-line { font-weight: 400; opacity: 1; }
+
+    /* Врезка внутри карточки: то, что портит вещь необратимо */
+    .warn { border-left: 2px solid var(--terracotta); padding: 4px 0 4px 18px; margin: 18px 0; }
+    .warn p { font-size: 14px; line-height: 1.75; opacity: .9; margin-bottom: 8px; }
+    .warn p:last-child { margin-bottom: 0; }
+    .warn b { font-weight: 500; color: var(--terracotta); }
+
+    /* Реплика мастера */
+    .master { background: var(--sand-light); padding: 22px 24px; margin: 20px 0 0; }
+    .master-label { font-size: 9px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--terracotta); margin-bottom: 10px; }
+    .master p { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 400; font-style: italic; line-height: 1.55; opacity: 1; margin: 0; }
+
+    /* ЧЕГО НЕ ДЕЛАТЬ */
+    .avoid { background: var(--sand-light); padding: clamp(48px, 8vw, 72px) 0; }
+    .avoid .tag { margin-bottom: 18px; }
+    .avoid h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 5.6vw, 42px); font-weight: 400; letter-spacing: .01em; margin-bottom: 30px; }
+    .avoid-list { display: grid; gap: 1px; background: var(--sand-dark); border: 1px solid var(--sand-dark); }
+    .avoid-item { background: var(--sand-light); padding: 18px 20px; }
+    .avoid-item h3 { font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 6px; }
+    .avoid-item p { font-size: 13px; font-weight: 300; line-height: 1.7; opacity: .78; }
+
+    /* ФИНАЛ */
+    .help { padding: clamp(56px, 9vw, 84px) 0; text-align: center; }
+    .help .tag { margin-bottom: 16px; }
+    .help h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 5.6vw, 44px); font-weight: 400; letter-spacing: .01em; margin-bottom: 18px; }
+    .help p { font-size: 15px; font-weight: 300; line-height: 1.8; opacity: .84; margin: 0 auto 30px; max-width: 460px; }
+    .help-phone { display: inline-block; font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 400; color: var(--charcoal); text-decoration: none; margin-bottom: 22px; }
+    .help-phone:hover { color: var(--terracotta); }
+    .help-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .help-btn { display: inline-block; font-size: 10px; letter-spacing: 1.7px; text-transform: uppercase; text-decoration: none; padding: 15px 24px; border: 1px solid var(--charcoal); color: var(--charcoal); transition: background .2s, color .2s, border-color .2s; }
+    .help-btn:hover { background: var(--charcoal); color: white; }
+    .help-btn.filled { background: var(--charcoal); color: white; }
+    .help-btn.filled:hover { background: var(--terracotta); border-color: var(--terracotta); }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); color: white; padding: clamp(44px, 7vw, 60px) 0 32px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 36px; flex-wrap: wrap; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 26px; letter-spacing: 6px; }
+    .footer-logo span { display: block; margin-top: 4px; font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 2px; color: var(--gold); }
+    .footer-tagline { font-size: 12px; opacity: .35; margin-top: 12px; font-weight: 300; max-width: 240px; line-height: 1.6; }
+    .footer-links h4 { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--sand); margin-bottom: 14px; }
+    .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,.45); text-decoration: none; font-weight: 300; }
+    .footer-links a:hover { color: var(--sand); }
+    .footer-copy { font-size: 11px; opacity: .3; font-weight: 300; padding-top: 26px; }
+
+    @media (max-width: 560px) {
+      .rules-grid { grid-template-columns: 1fr; }
+      .chips { gap: 7px; }
+      .chip { padding: 10px 13px; }
+      .step-num { font-size: 36px; }
+      .help-actions { flex-direction: column; }
+      .help-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo serif">РАФИНАД <span>by Olga</span></a>
+  <a href="../" class="nav-back">На главную</a>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="tag">Рафия · уход</div>
+    <h1 class="serif">Как ухаживать<br>за сумкой</h1>
+    <div class="lede">
+      <p>Рафия Ispie сделана из вискозы. Это волокно из древесной целлюлозы: лёгкое, прочное и хорошо держащее форму.</p>
+      <p>У него есть одна особенность, из которой следует всё остальное. <strong>Влажная рафия становится податливой, а высыхая, запоминает ту форму, в которой высохла.</strong></p>
+      <p>Поэтому форму сумке придают паром. И поэтому случайная вода опасна.</p>
+    </div>
+  </div>
+</header>
+
+<section class="rules">
+  <div class="wrap">
+    <div class="tag">Коротко</div>
+    <div class="rules-grid">
+      <div class="rule">
+        <span class="rule-num serif">01</span>
+        <p>Не стирать</p>
+        <small>Ни в машине, ни руками, ни замачиванием</small>
+      </div>
+      <div class="rule">
+        <span class="rule-num serif">02</span>
+        <p>Беречь от воды и солнца</p>
+        <small>Дождь размягчает волокно, солнце обесцвечивает</small>
+      </div>
+      <div class="rule">
+        <span class="rule-num serif">03</span>
+        <p>Хранить набитой, в ткани</p>
+        <small>Не в полиэтиленовом пакете</small>
+      </div>
+      <div class="rule">
+        <span class="rule-num serif">04</span>
+        <p>Не перегружать</p>
+        <small>Дно и ручки растягиваются необратимо</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="jump">
+  <div class="wrap">
+    <div class="tag">Что случилось</div>
+    <div class="chips">
+      <a class="chip" href="#everyday">Каждый день</a>
+      <a class="chip" href="#stain">Пятно</a>
+      <a class="chip" href="#wet">Промокла</a>
+      <a class="chip" href="#shape">Помялась</a>
+      <a class="chip" href="#snag">Зацепка</a>
+      <a class="chip" href="#storage">Хранение</a>
+    </div>
+  </div>
+</section>
+
+<div class="steps">
+  <div class="wrap">
+
+    <article class="step" id="everyday">
+      <div class="step-num serif">01</div>
+      <h2 class="serif">Каждый день</h2>
+      <p>Пыль снимайте сухой мягкой щёткой или салфеткой из микрофибры. Влажная тряпка вбивает пыль в плетение.</p>
+      <p>Ключи и всё острое носите во внутренней косметичке. Лента рафии легко цепляется за молнии, застёжки и кольца.</p>
+      <p>Не набивайте сумку тяжёлым. Это главная причина, по которой летние сумки теряют вид: под весом дно провисает, а ручки вытягиваются.</p>
+    </article>
+
+    <article class="step" id="stain">
+      <div class="step-num serif">02</div>
+      <h2 class="serif">Пятно</h2>
+      <p class="lead-line">Действуйте сразу. Свежее пятно уходит, засохшее часто уже нет.</p>
+      <p>Возьмите светлую ткань и чуть смочите её. Добавьте каплю мягкого средства: подойдёт детский шампунь.</p>
+      <p>Промакивайте, не трите. От трения на плетении остаётся светлое вытертое место, и оно заметнее самого пятна.</p>
+      <p>Потом пройдите второй тканью, смоченной чистой водой, чтобы снять мыло. Дайте высохнуть в тени.</p>
+      <div class="warn">
+        <p><b>Жирное пятно водой не берётся.</b> Крем для рук, солнцезащитный крем, масло. Насыпьте на пятно тальк или картофельный крахмал, оставьте на ночь, утром смахните мягкой щёткой.</p>
+      </div>
+      <p>Любое средство сначала попробуйте на дне сумки, где не видно.</p>
+    </article>
+
+    <article class="step" id="wet">
+      <div class="step-num serif">03</div>
+      <h2 class="serif">Сумка промокла</h2>
+      <p class="lead-line">Сразу разгрузите её. Мокрая рафия теряет до половины прочности и не держит вес.</p>
+      <p>Промокните снаружи и внутри сухой хлопковой тканью. Не выкручивайте и не отжимайте.</p>
+      <p>Набейте белой бумагой. Газета не подойдёт: типографская краска переходит на светлую рафию.</p>
+      <p>Расправьте руками дно, углы и ручки. Сушите в тени при комнатной температуре, сутки или двое. Бумагу по мере намокания меняйте.</p>
+      <div class="warn">
+        <p><b>Не сушите феном, на батарее и на солнце.</b> От резкой сушки волокно становится ломким и начинает расслаиваться вдоль.</p>
+        <p><b>Дайте высохнуть полностью,</b> прежде чем убрать сумку в шкаф. Недосушенная вещь в закрытом месте плесневеет.</p>
+      </div>
+    </article>
+
+    <article class="step" id="shape">
+      <div class="step-num serif">04</div>
+      <h2 class="serif">Сумка помялась</h2>
+      <p class="lead-line">Форму возвращает пар. Это тот же приём, которым сумке задают форму в мастерской.</p>
+      <p>Начинайте изнутри: так расправляются дно и стенки. Отпаривателем можно вести прямо по изделию, слегка касаясь и время от времени приподнимая его, чтобы шёл чистый пар. Потом пройдите ручки и внешнюю сторону.</p>
+      <p>Под паром лента рафии раскрывается, и плетение снова ложится ровно.</p>
+      <p>Сразу после этого набейте сумку бумагой или тканью и дайте ей полностью высохнуть. Форму фиксирует не пар, а высыхание.</p>
+      <div class="warn">
+        <p><b>Утюгом так нельзя.</b> Его подошва намного горячее паровой головки. Держите утюг на весу, работайте только паром и не прикладывайте его к сумке. От касания плетение залоснится, и это не исправить.</p>
+        <p><b>Кожаные детали паром не обрабатывайте.</b> Кожа от него темнеет и грубеет.</p>
+      </div>
+      <div class="master">
+        <div class="master-label">Ольга</div>
+        <p>«Расправляю готовые изделия, начинаю с внутренней стороны. Действием пара происходит принятие необходимой формы и раскрытие нити рафии.»</p>
+      </div>
+    </article>
+
+    <article class="step" id="snag">
+      <div class="step-num serif">05</div>
+      <h2 class="serif">Зацепка</h2>
+      <p class="lead-line">Не тяните и не обрезайте. Обрезанная лента распускает соседние петли.</p>
+      <p>Подденьте вылезшую петлю тупой иглой, крючком или зубочисткой с изнанки и распределите лишнюю длину по соседним петлям.</p>
+      <p>Если лента разошлась вдоль, напишите Ольге. Это чинится.</p>
+    </article>
+
+    <article class="step" id="storage">
+      <div class="step-num serif">06</div>
+      <h2 class="serif">Хранение</h2>
+      <p>Убирайте сумку сухой и чистой.</p>
+      <p>Набейте её бумагой или мягкой тканью, чтобы держалась форма. Сложенная вещь запоминает складку, и со временем складка становится постоянной.</p>
+      <p>Уберите в тканевый мешок: хлопок, лён или обычная наволочка. Полиэтиленовый пакет не подходит, в нём копится влага.</p>
+      <p>Держите в сухом проветриваемом месте. Не в ванной, не у батареи, не на подоконнике.</p>
+      <p>Не вешайте сумку надолго за одну ручку. Весь вес уходит в одну точку крепления.</p>
+    </article>
+
+  </div>
+</div>
+
+<section class="avoid">
+  <div class="wrap">
+    <div class="tag">Если коротко</div>
+    <h2 class="serif">Что сокращает срок службы</h2>
+    <div class="avoid-list">
+      <div class="avoid-item">
+        <h3>Прямое солнце</h3>
+        <p>Выцветает цвет, слабеет само волокно. Подоконник и приборная панель в машине портят сумку, даже когда ей не пользуются.</p>
+      </div>
+      <div class="avoid-item">
+        <h3>Батарея и фен</h3>
+        <p>Лента пересыхает и начинает ломаться. Сушить только при комнатной температуре.</p>
+      </div>
+      <div class="avoid-item">
+        <h3>Стирка и дождь</h3>
+        <p>Мокрая рафия теряет до половины прочности, тянется под весом и садится при высыхании.</p>
+      </div>
+      <div class="avoid-item">
+        <h3>Перегруз</h3>
+        <p>Дно провисает, ручки вытягиваются. Волокно растягивается и обратно не возвращается.</p>
+      </div>
+      <div class="avoid-item">
+        <h3>Полиэтилен при хранении</h3>
+        <p>Влага не уходит наружу. Отсюда затхлый запах и плесень в стежках.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="help">
+  <div class="wrap">
+    <div class="tag">Если что-то пошло не так</div>
+    <h2 class="serif">Напишите Ольге</h2>
+    <p>Многое из того, что выглядит как поломка, чинится за десять минут. Расскажите, что случилось, и пришлите фотографию.</p>
+    <a class="help-phone serif" href="tel:+79337579850">+7 933 757-98-50</a>
+    <div class="help-actions">
+      <a class="help-btn filled" href="https://t.me/+79337579850" target="_blank" rel="noopener">Telegram</a>
+      <a class="help-btn" href="https://wa.me/79337579850" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="help-btn" href="../#gallery">Коллекция</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo serif">РАФИНАД <span>by Olga</span></div>
+        <p class="footer-tagline">Авторские сумки ручной работы из премиальной рафии Ispie</p>
+      </div>
+      <div class="footer-links">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="../#about">О мастере</a></li>
+          <li><a href="../#gallery">Коллекция</a></li>
+          <li><a href="../#materials">Материалы</a></li>
+          <li><a href="../#buy">Купить</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Контакты</h4>
+        <ul>
+          <li><a href="tel:+79337579850">+7 933 757-98-50</a></li>
+          <li><a href="https://t.me/+79337579850" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://wa.me/79337579850" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 РАФИНАД by Olga. Сумки ручной работы из рафии.</div>
+  </div>
+</footer>
+
+</body>
+</html>

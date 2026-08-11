@@ -429,6 +429,12 @@ nav.nav-scrolled {
       .contact-bar .ct-i { width: 20px; height: 20px; }
       body { padding-bottom: 64px; }
     }
+
+    /* Ссылка на страницу ухода. Стоит в секции о материале: именно там у
+       читателя возникает вопрос, как с этим волокном обращаться. Ссылка
+       живёт на тёмном фоне, поэтому берёт песочный цвет, а не терракоту. */
+    .materials-care { display: inline-block; margin-top: 26px; font-size: 10px; letter-spacing: 1.7px; text-transform: uppercase; color: var(--sand); text-decoration: none; border-bottom: 1px solid rgba(216,199,177,.45); padding-bottom: 5px; transition: color .2s, border-color .2s; }
+    .materials-care:hover { color: #fff; border-color: var(--sand); }
   </style>
   <link rel="stylesheet" href="assets/raffia/colors-showcase.css">
   <link rel="stylesheet" href="assets/catalog/catalog.css">
@@ -711,6 +717,7 @@ nav.nav-scrolled {
       <div class="tag">04 / Материал</div>
       <h2 class="serif">Рафия: что это такое</h2>
       <p>Ispie — рафия из 100% вискозы: материала на основе целлюлозы. Ольга выбрала её за лёгкость, выразительную фактуру и способность хорошо держать форму в ручном плетении.</p>
+      <a class="materials-care" href="care/">Как ухаживать за сумкой</a>
     </div>
     <div class="facts reveal">
       <div class="fact"><div class="fact-icon serif">◈</div><div><h4>100% вискоза</h4><p>Состав материала Ispie, с которым работает Ольга.</p></div></div>
@@ -774,6 +781,7 @@ nav.nav-scrolled {
           <li><a href="#about">О мастере</a></li>
           <li><a href="#gallery">Коллекция</a></li>
           <li><a href="#materials">Материалы</a></li>
+          <li><a href="care/">Уход за сумкой</a></li>
           <li><a href="#buy">Купить</a></li>
         </ul>
       </div>
