@@ -6,6 +6,7 @@
   window.RAFINAD = window.RAFINAD || {};
 
   let overlay, imgEl, capEl, counterEl;
+  let opener, previousOverflow;
   let items = [];
   let index = 0;
   let startX = 0;
@@ -18,6 +19,7 @@
     overlay.className = 'rf-lightbox';
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Просмотр фотографий');
     overlay.innerHTML =
       '<button class="rf-lb-close" type="button" aria-label="Закрыть">×</button>'
       + '<button class="rf-lb-nav rf-lb-prev" type="button" aria-label="Предыдущее фото">‹</button>'
@@ -55,6 +57,15 @@
 
     document.addEventListener('keydown', (event) => {
       if (!overlay.classList.contains('is-open')) return;
+      if (event.key === 'Tab') {
+        const buttons = [...overlay.querySelectorAll('button')].filter(button => button.getClientRects().length);
+        const first = buttons[0], last = buttons[buttons.length - 1];
+        if (!overlay.contains(document.activeElement) || (event.shiftKey && document.activeElement === first)) {
+          event.preventDefault(); (event.shiftKey ? last : first).focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first.focus();
+        }
+      }
       if (event.key === 'Escape') close();
       else if (event.key === 'ArrowLeft') go(-1);
       else if (event.key === 'ArrowRight') go(1);
@@ -81,17 +92,23 @@
   function open(list, start) {
     if (!Array.isArray(list) || !list.length) return;
     if (!overlay) build();
+    if (!overlay.classList.contains('is-open')) {
+      opener = document.activeElement;
+      previousOverflow = document.body.style.overflow;
+    }
     items = list;
     index = Math.max(0, Math.min(list.length - 1, start || 0));
     render();
     overlay.classList.add('is-open');
     document.body.style.overflow = 'hidden';
+    overlay.querySelector('.rf-lb-close').focus();
   }
 
   function close() {
     if (!overlay) return;
     overlay.classList.remove('is-open');
-    document.body.style.overflow = '';
+    document.body.style.overflow = previousOverflow || '';
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
     imgEl.src = '';
   }
 

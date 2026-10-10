@@ -1,0 +1,26 @@
+/* Fairs: the stall is the main story; smaller photos show variety. */
+.fairs { padding: 48px 24px; scroll-margin-top: 90px; background: var(--cream); }
+.fairs-status { margin: 0 0 9px; color: var(--terracotta); font-size: 10px; font-weight: 500; letter-spacing: 2px; }
+.fairs h2 { font-size: 42px; font-weight: 400; line-height: 1.05; letter-spacing: .01em; margin-bottom: 22px; }
+.fair-story { display: block; }
+.fair-info { padding-bottom: 22px; }
+.fair-date { color: var(--terracotta); font-size: 11px; letter-spacing: 1px; margin-bottom: 8px; }
+.fair-info h3 { font-size: 28px; font-weight: 400; line-height: 1.2; margin-bottom: 12px; }
+.fair-intro { max-width: 40ch; font-size: 13px; line-height: 1.8; }
+.fair-photos, .fair-photos figure { min-width: 0; }
+.fair-photo { display: block; width: 100%; padding: 0; background: var(--sand-light); line-height: 0; }
+.fair-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.fair-main img { object-fit: contain; }
+.fair-details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-top: 10px; }
+.fair-flowers img { object-position: 50% 71%; height: 100%; }
+.fair-photo:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 4px; }
+@media (min-width: 900px) {
+  .fairs { padding: clamp(76px, 10vw, 140px) var(--edge); }
+  .fairs h2 { font-size: clamp(42px, 4.2vw, 62px); margin-bottom: 36px; }
+  .fair-story { display: grid; grid-template-columns: minmax(0, .36fr) minmax(0, 1fr); gap: 32px; }
+  .fair-info { padding-top: 4px; }
+  .fair-date { margin-bottom: 12px; }
+  .fair-info h3 { font-size: 29px; margin-bottom: 22px; }
+  .fair-details { gap: 18px; margin-top: 18px; }
+  .fair-details img { aspect-ratio: 3 / 2; }
+}
