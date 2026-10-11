@@ -1,10 +1,67 @@
 (() => {
   const endpoint = 'https://d5dttu513ukq6koa4l9s.628pfjdx.apigw.yandexcloud.net/api/public/colors';
+  // Real local photos remain usable when the cabinet or photo storage is offline.
   const fallbackColors = [
-    { name: 'Тёплый песок', image_url: 'assets/raffia/placeholder-honey.webp' },
-    { name: 'Пыльная роза', image_url: 'assets/raffia/placeholder-rose.webp' },
-    { name: 'Оливковый сад', image_url: 'assets/raffia/placeholder-olive.webp' },
-    { name: 'Дымчатая сирень', image_url: 'assets/raffia/placeholder-periwinkle.webp' },
+    {
+      "name": "Осенний песок",
+      "image_url": "assets/raffia/spools/01-large.webp",
+      "thumbnail_url": "assets/raffia/spools/01.webp"
+    },
+    {
+      "name": "Ива",
+      "image_url": "assets/raffia/spools/02-large.webp",
+      "thumbnail_url": "assets/raffia/spools/02.webp"
+    },
+    {
+      "name": "Тигровая лилия",
+      "image_url": "assets/raffia/spools/03-large.webp",
+      "thumbnail_url": "assets/raffia/spools/03.webp"
+    },
+    {
+      "name": "Коралл",
+      "image_url": "assets/raffia/spools/04-large.webp",
+      "thumbnail_url": "assets/raffia/spools/04.webp"
+    },
+    {
+      "name": "Крафт",
+      "image_url": "assets/raffia/spools/05-large.webp",
+      "thumbnail_url": "assets/raffia/spools/05.webp"
+    },
+    {
+      "name": "Лайм",
+      "image_url": "assets/raffia/spools/06-large.webp",
+      "thumbnail_url": "assets/raffia/spools/06.webp"
+    },
+    {
+      "name": "Овсяный крем",
+      "image_url": "assets/raffia/spools/07-large.webp",
+      "thumbnail_url": "assets/raffia/spools/07.webp"
+    },
+    {
+      "name": "Фуксия",
+      "image_url": "assets/raffia/spools/08-large.webp",
+      "thumbnail_url": "assets/raffia/spools/08.webp"
+    },
+    {
+      "name": "Древесная кора",
+      "image_url": "assets/raffia/spools/09-large.webp",
+      "thumbnail_url": "assets/raffia/spools/09.webp"
+    },
+    {
+      "name": "Золото",
+      "image_url": "assets/raffia/spools/10-large.webp",
+      "thumbnail_url": "assets/raffia/spools/10.webp"
+    },
+    {
+      "name": "Тёплое дерево",
+      "image_url": "assets/raffia/spools/11-large.webp",
+      "thumbnail_url": "assets/raffia/spools/11.webp"
+    },
+    {
+      "name": "Колибри",
+      "image_url": "assets/raffia/spools/12-large.webp",
+      "thumbnail_url": "assets/raffia/spools/12.webp"
+    }
   ];
 
   const gallery = document.querySelector('#gallery');
@@ -26,7 +83,7 @@
     + '<button class="raffia-colors__arrow raffia-colors__arrow--next" type="button" aria-label="Следующие цвета">›</button>'
     + '</div>'
     + '</div>'
-    + '<p class="raffia-colors__note">Сейчас здесь временные примеры фактуры. Реальные мотки и названия добавляет мастер.</p>';
+    + '<p class="raffia-colors__note">Нажмите на моток, чтобы рассмотреть его крупнее.</p>';
   gallery.insertAdjacentElement('afterend', section);
 
   const navigation = document.querySelector('#site-navigation');
@@ -39,7 +96,6 @@
   }
 
   const ribbon = section.querySelector('.raffia-colors__ribbon');
-  const note = section.querySelector('.raffia-colors__note');
   const messageField = document.querySelector('#custom-order textarea[name="message"]');
 
   const step = () => Math.round(ribbon.clientWidth * 0.8);
@@ -48,7 +104,7 @@
   section.querySelector('.raffia-colors__arrow--next')
     .addEventListener('click', () => ribbon.scrollBy({ left: step(), behavior: 'smooth' }));
 
-  const render = (colors, temporary) => {
+  const render = (colors) => {
     ribbon.replaceChildren();
     // The lightbox flips through the whole palette, so a click on any spool
     // starts from that spool but can keep going.
@@ -62,19 +118,19 @@
       photo.className = 'raffia-color-card__photo';
       photo.setAttribute('aria-label', `Открыть фото мотка «${color.name}»`);
       const image = document.createElement('img');
-      image.src = color.image_url;
+      image.src = color.thumbnail_url || color.image_url;
       image.alt = `Моток рафии «${color.name}»`;
       image.loading = 'lazy';
       image.decoding = 'async';
       photo.append(image);
-      if (!temporary) photo.addEventListener('click', () => window.RAFINAD?.openLightbox?.(shots, position));
+      photo.addEventListener('click', () => window.RAFINAD?.openLightbox?.(shots, position));
 
       const body = document.createElement('div');
       body.className = 'raffia-color-card__body';
       const title = document.createElement('h3');
       title.textContent = color.name;
       body.append(title);
-      if (!temporary) {
+      {
         const pick = document.createElement('button');
         pick.type = 'button';
         pick.className = 'raffia-color-card__pick';
@@ -93,10 +149,35 @@
     });
   };
 
-  render(fallbackColors, true);
-  fetch(endpoint).then((response) => (response.ok ? response.json() : [])).then((colors) => {
-    if (!Array.isArray(colors) || !colors.length) return;
-    render(colors, false);
-    note.textContent = 'Цвета показаны по наличию у мастера. Нажмите на моток, чтобы рассмотреть его крупнее.';
-  }).catch(() => {});
+  render(fallbackColors);
+
+  // Keep the local palette until both the cabinet data AND all its photos load.
+  const imageReady = (src) => new Promise((resolve) => {
+    const image = new Image();
+    const finish = (ready) => {
+      window.clearTimeout(timer);
+      image.onload = image.onerror = null;
+      if (!ready) image.removeAttribute('src');
+      resolve(ready);
+    };
+    const timer = window.setTimeout(() => finish(false), 8000);
+    image.onload = () => finish(image.naturalWidth > 0);
+    image.onerror = () => finish(false);
+    image.src = src;
+  });
+
+  const controller = new AbortController();
+  const requestTimer = window.setTimeout(() => controller.abort(), 8000);
+  fetch(endpoint, { signal: controller.signal })
+    .then((response) => (response.ok ? response.json() : []))
+    .then(async (colors) => {
+      if (!Array.isArray(colors) || !colors.length ||
+          !colors.every((color) => color && typeof color.name === 'string' &&
+            color.name.trim() && typeof color.image_url === 'string' && color.image_url.trim())) return;
+      const photoUrls = [...new Set(colors.flatMap((color) => [color.image_url, color.thumbnail_url || color.image_url]))];
+      const ready = await Promise.all(photoUrls.map(imageReady));
+      if (ready.every(Boolean)) render(colors);
+    })
+    .catch(() => {})
+    .finally(() => window.clearTimeout(requestTimer));
 })();
