@@ -151,6 +151,9 @@
 
   render(fallbackColors);
 
+  // During the cloud incident the site serves its approved local palette.
+  if (window.RAFINAD_RESERVE?.mode === 'reserve') return;
+
   // Keep the local palette until both the cabinet data AND all its photos load.
   const imageReady = (src) => new Promise((resolve) => {
     const image = new Image();
